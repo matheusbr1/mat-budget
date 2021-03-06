@@ -7,6 +7,7 @@ export default createGlobalStyle`
     --title: #283E58;
     --description: #A6ACBE;
     --shadow: #EDEDF6;
+    --field-border: #EAEDEE;
 
     --white: #FFFFFF;
     --orange: #FF7A00;
@@ -36,5 +37,6 @@ export default createGlobalStyle`
   body {
     margin: 0;
     background: var(--background);
+    font-family: Roboto, sans-serif;
   }
 `

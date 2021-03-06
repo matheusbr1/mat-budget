@@ -1,10 +1,11 @@
 import React from 'react'
 import GlobalStyles from './styles/global'
+import SignIn from './pages/SignIn'
 
 function App() {
   return (
     <React.Fragment>
-      <h1>Hello MatBudget</h1>
+      <SignIn />
       <GlobalStyles />
     </React.Fragment>
   )
