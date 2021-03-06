@@ -1,11 +1,12 @@
 import React from 'react'
 import GlobalStyles from './styles/global'
-import SignIn from './pages/SignIn'
+
+import Routes from './routes'
 
 function App() {
   return (
     <React.Fragment>
-      <SignIn />
+      <Routes />
       <GlobalStyles />
     </React.Fragment>
   )

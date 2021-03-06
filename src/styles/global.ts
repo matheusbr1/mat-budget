@@ -6,7 +6,6 @@ export default createGlobalStyle`
     --background: #F8F8FB;
     --title: #283E58;
     --description: #A6ACBE;
-    --shadow: #EDEDF6;
     --field-border: #EAEDEE;
 
     --white: #FFFFFF;

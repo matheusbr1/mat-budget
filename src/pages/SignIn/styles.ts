@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import { shade } from 'polished'
 
 export const Container = styled.div`
@@ -26,7 +26,20 @@ export const Container = styled.div`
   }
 `
 
+export const appearFromLeft = keyframes`
+    from {
+        opacity: 0;
+        transform: translateY(50px)
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0)
+    }
+`
+
 export const MainCard = styled.main`
+  animation: ${appearFromLeft} 1s;
+
   position: relative;
 
   display: flex;
@@ -48,7 +61,7 @@ export const MainCard = styled.main`
     height: 600px;
   }
 
-  > div {
+  form {
     width: 100%;
     height: 40%;
     display: flex;
