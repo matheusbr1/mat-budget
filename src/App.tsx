@@ -1,8 +1,12 @@
 import React from 'react'
+import GlobalStyles from './styles/global'
 
 function App() {
   return (
-    <h1>Hello MatBudget</h1>
+    <React.Fragment>
+      <h1>Hello MatBudget</h1>
+      <GlobalStyles />
+    </React.Fragment>
   )
 }
 
