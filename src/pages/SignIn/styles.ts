@@ -53,7 +53,7 @@ export const MainCard = styled.main`
   height: 630px;
 
   background: var(--white);
-  border-radius: 50px;
+  border-radius: 35px;
 
   box-shadow: -17px 8px 100px rgba(0, 0, 0, 0.05);
 

@@ -2,13 +2,13 @@ import React from 'react'
 
 import { Container } from './styles'
 
-interface ButtonProps {
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   label: string
 }
 
-const Button: React.FC<ButtonProps> = ({ label }) => {
+const Button: React.FC<ButtonProps> = ({ label,...rest }) => {
   return (
-    <Container>
+    <Container {...rest}>
       {label}
     </Container>
   )

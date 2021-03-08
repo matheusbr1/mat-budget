@@ -19,7 +19,7 @@ export const Container = styled.div<InputProps>`
     transition: 0.2s;
     
     border: 2px solid var(--field-border);
-    border-radius: 50px;
+    border-radius: 20px;
 
     color: var(--description);
 

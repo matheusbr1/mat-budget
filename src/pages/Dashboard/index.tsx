@@ -4,33 +4,30 @@ import currencyIcon from '../../assets/icons/currency.svg'
 
 import Card from '../../components/Card'
 import ProfileCard from '../../components/ProfileCard'
+import Select from '../../components/Select'
+import Movimentation from '../../components/Movimentation'
 
-import { Container, Row } from './styles'
+import { Container, TopInfosGrid, CardsGrid } from './styles'
 
 const Dashboard: React.FC = () => {
   return (
     <Container>
 
-      <Row>
+      <Movimentation />
+
+      <TopInfosGrid className="top-infos" >
 
         <div className="title">
           <h1>Dashboard</h1>
           <span>MatBudget</span>
         </div>
 
-        <div className="componentTest" >
-          <h2>Nova movimentação</h2>
-        </div>
-
-        <div className="componentTest" >
-          <h2>Seletor de mês</h2>
-        </div>
+        <Select />
 
         <ProfileCard />
-      </Row>
-      
-      <Row>
+      </TopInfosGrid>
 
+      <CardsGrid className="cards" >
         <Card 
           type="balance" 
           value="105.501,75" 
@@ -51,8 +48,14 @@ const Dashboard: React.FC = () => {
           label="Minhas Dispesas" 
           icon={currencyIcon} 
         />
-      
-      </Row>
+
+        <Card 
+          type="balance" 
+          value="1.793,23" 
+          label="Balanço do último mês" 
+          icon={currencyIcon} 
+        />
+      </CardsGrid>
 
     </Container>
   )

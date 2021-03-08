@@ -1,6 +1,5 @@
 import React from 'react'
 
-
 import { Container, Infos } from './styles'
 
 interface CardProps {

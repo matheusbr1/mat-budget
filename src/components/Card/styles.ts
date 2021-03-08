@@ -9,8 +9,8 @@ export const Container = styled.div<CardProps>`
   justify-content: space-around;
   align-items: center;
 
-  width: 350px;
-  height: 125px;
+  width: 100%;
+  height: 110px;
 
   border-radius: 20px;
   background: var(--white);
@@ -29,20 +29,16 @@ export const Container = styled.div<CardProps>`
 
     border-radius: 50%;
 
-    background: rgba(255, 198, 104, 0.21);
-    background: 'rgba(255, 76, 97, 0.2)';
-    background: 'rgba(51, 214, 159, 0.2)';
-
     ${props => props.type === 'balance' && css`
-      background: 'rgba(255, 198, 104, 0.21)';
+      background: rgba(255, 198, 104, 0.21);
     `}
 
     ${props => props.type === 'income' && css`
-      background: 'rgba(51, 214, 159, 0.2)';
+      background: rgba(51, 214, 159, 0.2);
     `}
 
     ${props => props.type === 'expense' && css`
-      background: 'rgba(255, 76, 97, 0.2)';
+      background: rgba(255, 76, 97, 0.2);
     `}
   }
 `
@@ -51,13 +47,13 @@ export const Infos = styled.main`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   
   height: 100%;
+  width: max-content;
 
   h3 {
     font-weight: bold;
-    font-size: 2.8rem;
+    font-size: 2.6rem;
     color: var(--title);
     margin-bottom: 10px;
   }
@@ -65,5 +61,9 @@ export const Infos = styled.main`
   span {
     font-size: 1.4rem;
     color: var(--description);
+  }
+
+  @media (max-width: 1180px) {
+    width: 70%;
   }
 `
