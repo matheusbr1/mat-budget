@@ -37,6 +37,12 @@ export default createGlobalStyle`
     } 
   }
 
+  @media (max-width: 600px) {
+    html {
+      font-size: 50%
+    } 
+  }
+
   * {
     border: 0;
     padding: 0;

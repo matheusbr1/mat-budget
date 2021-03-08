@@ -40,12 +40,16 @@ export const CardsGrid = styled.div`
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
   }
+
+  @media (max-width: 645px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
 `
 
 export const TopInfosGrid = styled.div`
   display: grid;
   align-items: center;
-  grid-template-columns: 150px 10% 1fr 10% 1fr;
+  grid-template-columns: 150px 20% 1fr 20% 1fr;
   grid-template-areas: "title . select . profile";
   margin: 20px 0;
 
@@ -58,5 +62,9 @@ export const TopInfosGrid = styled.div`
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
     grid-template-areas: "title profile" "select select";
+  }
+
+  @media (max-width: 500px) {
+    grid-template-columns: 1fr 150px;
   }
 `

@@ -20,7 +20,6 @@ export const Container = styled.div`
   transition: 0.2s;
 
   &:hover {
-    /* border: solid 1px var(--purple); */
     filter: drop-shadow(0px 4px 4px rgba(156, 105, 226, 0.5));
   }
 
@@ -51,5 +50,13 @@ export const Container = styled.div`
     cursor: pointer;
     width: 24px;
     height: 24px;
+  }
+  
+  @media (max-width: 500px) {
+    width: 150px;
+
+    div {
+      display: none;
+    }
   }
 `

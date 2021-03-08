@@ -13,7 +13,9 @@ export const Container = styled.div`
 
   cursor: pointer;
 
-  position: absolute;
+  position: fixed;
   bottom: 30px;
   right: 30px;
+
+  z-index: 20;
 `
