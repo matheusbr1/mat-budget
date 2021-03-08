@@ -1,5 +1,5 @@
-import React, { useCallback, useRef } from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import React, { useRef } from 'react'
+import { Link } from 'react-router-dom'
 
 import { Form } from '@unform/web'
 import { FormHandles } from '@unform/core'
@@ -15,8 +15,6 @@ import { Container, MainCard } from './styles'
 const SignUp: React.FC = () => {
 
   const formRef = useRef<FormHandles>(null)
-
-  const history = useHistory()
 
   return (
     <Container>

@@ -1,13 +1,18 @@
 import React from 'react'
-
-import currencyIcon from '../../assets/icons/currency.svg'
+import { Bar } from 'react-chartjs-2'
 
 import Card from '../../components/Card'
 import ProfileCard from '../../components/ProfileCard'
 import Select from '../../components/Select'
 import Movimentation from '../../components/Movimentation'
 
+import DoughnutChart from '../../components/DoughnutChart'
+import BarChart from '../../components/BarChart'
+
+import currencyIcon from '../../assets/icons/currency.svg'
+
 import { Container, TopInfosGrid, CardsGrid } from './styles'
+
 
 const Dashboard: React.FC = () => {
   return (
@@ -56,7 +61,10 @@ const Dashboard: React.FC = () => {
           icon={currencyIcon} 
         />
       </CardsGrid>
-
+        <div className="wrapper">
+          <BarChart />
+          <DoughnutChart />
+        </div>
     </Container>
   )
 }

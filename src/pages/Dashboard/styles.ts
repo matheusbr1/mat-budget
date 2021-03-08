@@ -6,6 +6,12 @@ export const Container = styled.div`
   margin: 0 auto;
   padding: 0 2%;
 
+  div.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   div.title {
     grid-area: title;
     margin-left: 5px;
@@ -49,12 +55,14 @@ export const CardsGrid = styled.div`
 export const TopInfosGrid = styled.div`
   display: grid;
   align-items: center;
-  grid-template-columns: 150px 20% 1fr 20% 1fr;
-  grid-template-areas: "title . select . profile";
+  grid-template-columns: 20% 35% 35%;
+  grid-template-areas: "title select profile";
   margin: 20px 0;
+  gap: 5%;
 
   @media (max-width: 1180px) {
-    grid-template-columns: 150px 5% 1fr 5% 1fr;
+    grid-template-columns: 150px 1fr 1fr;
+    gap: 20px;
   }
 
   @media (max-width: 768px) {
