@@ -4,7 +4,7 @@ import { shade } from 'polished'
 export const Container = styled.button`
   background: var(--white-purple);
 
-  width: 65%;
+  width: 70%;
   height: 50px;
 
   color: var(--white);

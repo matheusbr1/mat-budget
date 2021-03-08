@@ -6,7 +6,7 @@ interface InputProps {
 }
 
 export const Container = styled.div<InputProps>`
-  width: 65%;
+  width: 70%;
 
   input {
     width: 100%;
