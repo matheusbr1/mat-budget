@@ -16,7 +16,6 @@ export const Container = styled.div<CardProps>`
   background: var(--white);
 
   padding: 10px;
-  margin: 10px;
   
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.2));
 

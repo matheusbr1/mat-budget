@@ -25,6 +25,12 @@ export default createGlobalStyle`
     font-size: 62.5%
   } 
 
+  @media (max-width: 1180px) {
+    html {
+      font-size: 60%
+    } 
+  }
+
   * {
     border: 0;
     padding: 0;
