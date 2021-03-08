@@ -4,7 +4,7 @@ export const Container = styled.div`
   background: var(--background);
   max-width: 1440px;
   margin: 0 auto;
-  padding: 0 5%;
+  padding: 0 2%;
 
   div.title {
     margin-left: 5px;

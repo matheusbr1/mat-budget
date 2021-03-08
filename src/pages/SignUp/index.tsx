@@ -12,36 +12,35 @@ import manWalking from '../../assets/images/ilustration.png'
 
 import { Container, MainCard } from './styles'
 
-const SignIn: React.FC = () => {
+const SignUp: React.FC = () => {
 
   const formRef = useRef<FormHandles>(null)
 
   const history = useHistory()
 
-  const handleSignIn = useCallback(() => {
-    history.push('/dashboard')
-  }, [history])
-
   return (
     <Container>
       <MainCard>
-        <h1>Faça seu Login</h1>
 
-        <Form ref={formRef} onSubmit={handleSignIn} >
+        <div className="titleContainer" >
+          <h1>Faça seu cadastro</h1>
+          <span>É gratuíto, rápido e fácil ;)</span>
+        </div>
+
+        <Form ref={formRef} onSubmit={() => {}} >
+          
+        <TextField placeholder="Nome" />
 
           <TextField placeholder="E-mail" />
           
           <TextField placeholder="Senha" />
 
-          <Button label="Entrar" />
-
-          <Link to='/forgot'>Esqueci minha senha</Link>
-
+          <Button label="Cadastrar" />
         </Form>
-        
-        <Link to='/signUp' className='signup'>
-          Criar conta
-          <img src={arrow} alt='Criar conta'/>
+         
+        <Link to='/' className='signin'>
+          <img src={arrow} alt='Voltar para o login'/>
+          Voltar para o login
         </Link>
       
       </MainCard>
@@ -51,4 +50,4 @@ const SignIn: React.FC = () => {
   )
 }
 
-export default SignIn
+export default SignUp
