@@ -13,7 +13,7 @@ import BarChart from '../../components/BarChart'
 
 import currencyIcon from '../../assets/icons/currency.svg'
 
-import { Container, TopInfosGrid, CardsGrid } from './styles'
+import { Container, TopInfosGrid, CardsGrid, Grid } from './styles'
 
 
 const Dashboard: React.FC = () => {
@@ -64,16 +64,20 @@ const Dashboard: React.FC = () => {
         />
       </CardsGrid>
 
-      <BarChart />
+      <Grid>
+        <BarChart />
 
-      <BalanceCard />
+        <BalanceCard />
 
-      <TransactionsCard />
+        <TransactionsCard />
 
-        <div className="wrapper">
+        <div className="doughnutChartsContainer">
           <DoughnutChart label="Receitas por categoria" />
+
           <DoughnutChart label="Despesas por categoria" />
         </div>
+        
+      </Grid>
 
     </Container>
   )

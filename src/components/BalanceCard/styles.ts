@@ -7,6 +7,8 @@ export const Container = styled.div`
   border-radius: 20px;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.2));
 
+  grid-area: balanceCard;
+
   div.title {
     padding: 25px;
     border-bottom: 1px solid #EEF0F7;
