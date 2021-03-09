@@ -1,7 +1,8 @@
 import React from 'react'
 import { Doughnut } from 'react-chartjs-2'
+import Dot from '../../components/Dot'
 
-import { Container, Dot } from './styles'
+import { Container } from './styles'
 
 interface ChartProps {
   label: string
@@ -19,25 +20,25 @@ const DoughnutChart: React.FC<ChartProps> = ({ label }) => {
     {
       label: "Educação",
       color: 'var(--white-purple)',
-      value: 300,
+      value: '300,00',
       percent: 50
     },
     {
       label: "Alimentação",
       color: 'var(--yellow)',
-      value: 258,
+      value: '258,50',
       percent: 26
     },
     {
       label: "Lazer",
       color: 'var(--red)',
-      value: 125,
+      value: '125,94',
       percent: 15
     },
     {
       label: "Outros",
       color: 'var(--green)',
-      value: 12,
+      value: '12,98',
       percent: 2
     },
   ]
@@ -56,7 +57,6 @@ const DoughnutChart: React.FC<ChartProps> = ({ label }) => {
         />
 
         <div className="categoryInfos">
-
           {
             categorys.map(category => (
               <div className="line">
@@ -66,7 +66,7 @@ const DoughnutChart: React.FC<ChartProps> = ({ label }) => {
                 </div>
 
                 <p> 
-                  R$ {category.value},00
+                  R$ {category.value}
                   <span>({category.percent}%)</span>
                 </p>
               </div>

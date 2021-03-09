@@ -2,6 +2,8 @@ import React from 'react'
 
 import Card from '../../components/Card'
 import ProfileCard from '../../components/ProfileCard'
+import BalanceCard from '../../components/BalanceCard'
+
 import Select from '../../components/Select'
 import Movimentation from '../../components/Movimentation'
 
@@ -62,6 +64,8 @@ const Dashboard: React.FC = () => {
       </CardsGrid>
 
       <BarChart />
+
+      <BalanceCard />
 
         <div className="wrapper">
           <DoughnutChart label="Receitas por categoria" />

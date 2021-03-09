@@ -1,12 +1,10 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  width: calc(50% - 5px);
-  height: 572px;
-
-  padding: 10px;
-  border-radius: 20px;
+  height: 200px;
+  width: 100%;
   background: var(--white);
+  border-radius: 20px;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.2));
 
   div.title {
@@ -18,17 +16,17 @@ export const Container = styled.div`
     }
   }
 
-  div.categoryInfos {
+  div.categorys {
     display: flex;
     flex-direction: column;
     
-    padding: 25px;
+    padding: 15px 25px;
 
     div.line {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin: 10px;
+      margin: 6px;
 
       div {
         display: flex;
