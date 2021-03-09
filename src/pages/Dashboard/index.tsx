@@ -1,5 +1,4 @@
 import React from 'react'
-import { Bar } from 'react-chartjs-2'
 
 import Card from '../../components/Card'
 import ProfileCard from '../../components/ProfileCard'
@@ -61,10 +60,14 @@ const Dashboard: React.FC = () => {
           icon={currencyIcon} 
         />
       </CardsGrid>
+
+      <BarChart />
+
         <div className="wrapper">
-          <BarChart />
-          <DoughnutChart />
+          <DoughnutChart label="Receitas por categoria" />
+          <DoughnutChart label="Despesas por categoria" />
         </div>
+
     </Container>
   )
 }

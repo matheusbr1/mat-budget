@@ -10,6 +10,9 @@ export const Container = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 75%;
+
+    margin: 10px 0;
   }
 
   div.title {
@@ -55,14 +58,14 @@ export const CardsGrid = styled.div`
 export const TopInfosGrid = styled.div`
   display: grid;
   align-items: center;
-  grid-template-columns: 20% 35% 35%;
-  grid-template-areas: "title select profile";
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-areas: "title select . profile";
   margin: 20px 0;
-  gap: 5%;
+  gap: 20px;
 
   @media (max-width: 1180px) {
-    grid-template-columns: 150px 1fr 1fr;
-    gap: 20px;
+    grid-template-areas: "title select profile";
+    grid-template-columns: 175px 1fr 1fr
   }
 
   @media (max-width: 768px) {
@@ -76,3 +79,4 @@ export const TopInfosGrid = styled.div`
     grid-template-columns: 1fr 150px;
   }
 `
+
