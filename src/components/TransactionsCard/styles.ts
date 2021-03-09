@@ -1,7 +1,15 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
+  max-height: 850px;
+
+  @media (max-width: 1024px) {
+    max-height: 400px;
+  }
+
   width: 100%;
+  overflow-y: scroll;
+
   background: var(--white);
   border-radius: 20px;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.2));
@@ -22,6 +30,10 @@ export const Container = styled.div`
     flex-direction: column;
     
     padding: 15px 25px;
+
+    @media (max-width: 1100px) {
+      padding: 15px;
+    }
 
     div.line {
       display: flex;

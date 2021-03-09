@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { shade } from 'polished'
 
 export const Container = styled.div`
   width: 70px;
@@ -18,4 +19,8 @@ export const Container = styled.div`
   right: 30px;
 
   z-index: 20;
+
+  &:hover {
+    background: ${shade(0.2, '#6F52ED')}
+  }
 `

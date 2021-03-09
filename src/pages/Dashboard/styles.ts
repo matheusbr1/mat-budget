@@ -6,11 +6,14 @@ export const Container = styled.div`
   margin: 0 auto;
   padding: 0 2%;
 
+  overflow-x: hidden;
+
   div.doughnutChartsContainer {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    max-width: 95vw;
     grid-area: doughnutChart;
   }
 
@@ -64,7 +67,6 @@ export const TopInfosGrid = styled.div`
   @media (max-width: 768px) {
     gap: 10px;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
     grid-template-areas: "title profile" "select select";
   }
 
@@ -79,9 +81,20 @@ export const Grid = styled.div`
   gap: 10px;
   margin: 20px 0;
   
-  grid-template-columns: repeat(2, 37%) 25%;
+  grid-template-columns: repeat(3, 33%);
+  
   grid-template-areas: 
-            "barChart barChart balanceCard" 
-            "barChart barChart transactionsCard"
-            "doughnutChart doughnutChart transactionsCard";
+      "barChart barChart balanceCard" 
+      "barChart barChart transactionsCard"
+      "doughnutChart doughnutChart transactionsCard";
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+    
+    grid-template-areas: 
+        "balanceCard"
+        "barChart" 
+        "doughnutChart"
+        "transactionsCard";
+  }
 `

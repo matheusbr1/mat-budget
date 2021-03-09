@@ -3,8 +3,8 @@ import styled from 'styled-components'
 export const Container = styled.div`
   width: calc(50% - 5px);
   height: 572px;
+  max-width: 95vw;
 
-  padding: 10px;
   border-radius: 20px;
   background: var(--white);
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.2));
@@ -23,6 +23,10 @@ export const Container = styled.div`
     flex-direction: column;
     
     padding: 25px;
+
+    @media (max-width: 1100px) {
+      padding: 25px 15px;
+    }
 
     div.line {
       display: flex;

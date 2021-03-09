@@ -24,7 +24,31 @@ const TransactionsCard: React.FC = () => {
       }
     ]
 
-    return items.concat(items.concat(items.concat(items.concat(items))))
+    return items.concat(
+      items.concat(
+        items.concat(
+          items.concat(
+            items.concat(
+              items.concat(
+                items.concat(
+                  items.concat(
+                    items.concat(
+                      items.concat(
+                        items.concat(
+                          items.concat(
+                            items
+                          )
+                        )
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+      )
+    )
   }) 
 
   return (

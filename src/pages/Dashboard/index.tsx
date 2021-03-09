@@ -73,7 +73,6 @@ const Dashboard: React.FC = () => {
 
         <div className="doughnutChartsContainer">
           <DoughnutChart label="Receitas por categoria" />
-
           <DoughnutChart label="Despesas por categoria" />
         </div>
         

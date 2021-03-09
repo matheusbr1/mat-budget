@@ -1,6 +1,11 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
+  display: flex;
+  align-items: center;
+  
+  max-width: 95vw;
+
   width: 100%;
   padding: 10px;
   border-radius: 20px;

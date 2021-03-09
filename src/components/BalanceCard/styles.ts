@@ -24,6 +24,10 @@ export const Container = styled.div`
     
     padding: 15px 25px;
 
+    @media (max-width: 1100px) {
+      padding: 15px;
+    }
+
     div.line {
       display: flex;
       justify-content: space-between;
