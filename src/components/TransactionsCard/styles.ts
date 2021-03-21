@@ -9,6 +9,7 @@ export const Container = styled.div`
 
   width: 100%;
   overflow-y: scroll;
+  overflow-y: hidden;
 
   background: var(--white);
   border-radius: 20px;
