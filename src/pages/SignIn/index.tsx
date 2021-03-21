@@ -12,6 +12,8 @@ import manWalking from '../../assets/images/ilustration.png'
 
 import { Container, MainCard } from './styles'
 
+import Toasts from '../../components/ToastContainer'
+
 const SignIn: React.FC = () => {
 
   const formRef = useRef<FormHandles>(null)
@@ -24,6 +26,9 @@ const SignIn: React.FC = () => {
 
   return (
     <Container>
+
+      <Toasts />
+
       <MainCard>
         <h1>Faça seu Login</h1>
 

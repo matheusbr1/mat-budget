@@ -7,7 +7,7 @@ export const Container = styled.div`
   width: 100%;
 
   > div {
-    width: 100%;
+    width: 98%;
   }
 
   .Mui-focused {

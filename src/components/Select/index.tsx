@@ -29,7 +29,7 @@ const Select: React.FC = () => {
         }}
       >
         {monthList.map(month => (
-          <MenuItem 
+          <MenuItem
            value={month} 
            key={month} 
            style={{ 
