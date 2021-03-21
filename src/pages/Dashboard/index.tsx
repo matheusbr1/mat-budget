@@ -15,7 +15,6 @@ import currencyIcon from '../../assets/icons/currency.svg'
 
 import { Container, TopInfosGrid, CardsGrid, Grid } from './styles'
 
-
 const Dashboard: React.FC = () => {
   return (
     <Container>

@@ -1,52 +1,46 @@
 import React, { useCallback, useState } from 'react'
 
-import { Container, Options, Option } from './styles'
+import { Container } from './styles'
 
-import caretDown from '../../assets/icons/caretDown.svg'
+import { monthList } from '../../mocks'
+
+import { Select as MaterialSelect, MenuItem } from '@material-ui/core';
 
 const Select: React.FC = () => {
 
-  const [isOpen, setIsOpen] = useState(false)
-
-  const [currentOption, setCurrentOption] = useState('Selecione')
-
-  const handleClick = useCallback(() => {
-    setIsOpen(!isOpen)
-  }, [isOpen])
-  
-  const handleBlur = useCallback(() => {
-    setIsOpen(false)
-  },[])
+  const [month, setMonth] = useState('Janeiro')
 
   const handleSelect = useCallback((e) => {
-    setCurrentOption(e.target.innerText)
+    setMonth(e.target.value)
   },[])
 
   return (
-    <Container onBlur={handleBlur} onClick={handleClick} isOpen={isOpen} >
-      <span>{currentOption}</span>
-
-      <img src={caretDown} alt="Selecione" />
-
-      {
-        isOpen && (
-          <Options>
-            <Option onClick={handleSelect}>Janeiro</Option>
-            <Option onClick={handleSelect}>Fevereiro</Option>
-            <Option onClick={handleSelect}>Março</Option>
-            <Option onClick={handleSelect}>Abril</Option>
-            <Option onClick={handleSelect}>Maio</Option>
-            <Option onClick={handleSelect}>Junho</Option>
-            <Option onClick={handleSelect}>Julho</Option>
-            <Option onClick={handleSelect}>Agosto</Option>
-            <Option onClick={handleSelect}>Setembro</Option>
-            <Option onClick={handleSelect}>Outubro</Option>
-            <Option onClick={handleSelect}>Novembro</Option>
-            <Option onClick={handleSelect}>Dezembro</Option>
-          </Options>
-        )
-      }
-   
+    <Container>
+      <MaterialSelect
+        onFocus={() => console.log('focus')}
+        onBlur={() => console.log('blur')}
+        variant='outlined'
+        onChange={handleSelect}
+        value={month}
+        style={{ 
+          fontSize: '1.6rem',
+          color: 'var(--title)',
+          borderRadius: 10
+        }}
+      >
+        {monthList.map(month => (
+          <MenuItem 
+           value={month} 
+           key={month} 
+           style={{ 
+             fontSize: '1.6rem',
+             color: 'var(--title)'
+            }}
+           >
+             { month }
+          </MenuItem>
+        ))}
+      </MaterialSelect>
     </Container>
   )
 }

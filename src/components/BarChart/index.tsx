@@ -6,7 +6,20 @@ import { Container } from './styles'
 const BarChart: React.FC = () => {
 
   const data = {
-    labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+    labels: [
+      'Janeiro', 
+      'Fevereiro', 
+      'Março', 
+      'Abril', 
+      'Maio', 
+      'Junho', 
+      'Julho', 
+      'Agosto', 
+      'Setembro', 
+      'Outubro', 
+      'Novembro', 
+      'Dezembro'
+    ],
     datasets: [
       {
         label: 'My First dataset',

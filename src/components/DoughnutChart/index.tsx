@@ -18,24 +18,28 @@ const DoughnutChart: React.FC<ChartProps> = ({ label }) => {
 
   const categorys = [
     {
+      id: 1,
       label: "Educação",
       color: 'var(--white-purple)',
       value: '300,00',
       percent: 50
     },
     {
+      id: 2,
       label: "Alimentação",
       color: 'var(--yellow)',
       value: '258,50',
       percent: 26
     },
     {
+      id: 3,
       label: "Lazer",
       color: 'var(--red)',
       value: '125,94',
       percent: 15
     },
     {
+      id: 4,
       label: "Outros",
       color: 'var(--green)',
       value: '12,98',
@@ -59,7 +63,7 @@ const DoughnutChart: React.FC<ChartProps> = ({ label }) => {
         <div className="categoryInfos">
           {
             categorys.map(category => (
-              <div className="line">
+              <div className="line" key={category.id} >
                 <div>
                   <Dot color={category.color} />
                   <p>{category.label}</p>

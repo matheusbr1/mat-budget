@@ -1,55 +1,12 @@
 import React, { useState } from 'react'
+import { transactionsList } from '../../mocks'
 import Dot from '../Dot'
 
 import { Container } from './styles'
 
 const TransactionsCard: React.FC = () => {
 
-  const [categorys] = useState(() => {
-    const items = [
-      {
-        label: 'Mc Donald’s',
-        color: 'var(--red)',
-        value: '90,00'
-      },
-      {
-        label: 'Salário',
-        color: 'var(--green)',
-        value: '5.090,00'
-      },
-      {
-        label: 'Extra Uber',
-        color: 'var(--green)',
-        value: '890,00'
-      }
-    ]
-
-    return items.concat(
-      items.concat(
-        items.concat(
-          items.concat(
-            items.concat(
-              items.concat(
-                items.concat(
-                  items.concat(
-                    items.concat(
-                      items.concat(
-                        items.concat(
-                          items.concat(
-                            items
-                          )
-                        )
-                      )
-                    )
-                  )
-                )
-              )
-            )
-          )
-        )
-      )
-    )
-  }) 
+  const [transactions] = useState(transactionsList) 
 
   return (
     <Container>
@@ -57,16 +14,16 @@ const TransactionsCard: React.FC = () => {
         <h2>Últimas Transações</h2>
       </div>
 
-      <div className="categorys">
+      <div className="transactions">
           {
-            categorys.map(category => (
-              <div className="line">
+            transactions.map(transaction => (
+              <div className="line" key={transaction.id} >
                 <div>
-                  <Dot color={category.color} />
-                  <p>{category.label}</p>
+                  <Dot color={transaction.color} />
+                  <p>{transaction.label}</p>
                 </div>
                 <p> 
-                  R$ {category.value}
+                  R$ {transaction.value}
                 </p>
               </div>
             ))

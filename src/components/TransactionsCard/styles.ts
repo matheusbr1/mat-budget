@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
   max-height: 850px;
+  height: fit-content;
 
   @media (max-width: 1024px) {
     max-height: 400px;
@@ -26,7 +27,7 @@ export const Container = styled.div`
     }
   }
 
-  div.categorys {
+  div.transactions {
     display: flex;
     flex-direction: column;
     
