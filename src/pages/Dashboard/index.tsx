@@ -12,6 +12,8 @@ import DoughnutChart from '../../components/DoughnutChart'
 import BarChart from '../../components/BarChart'
 
 import currencyIcon from '../../assets/icons/currency.svg'
+import incomeIcon from '../../assets/icons/income.svg'
+import expenseIcon from '../../assets/icons/expense.svg'
 
 import { Container, TopInfosGrid, CardsGrid, Grid } from './styles'
 
@@ -45,14 +47,14 @@ const Dashboard: React.FC = () => {
           type="income"
           value="5.815,00" 
           label="Minhas Receitas" 
-          icon={currencyIcon} 
+          icon={incomeIcon} 
         />
         
         <Card 
           type="expense" 
           value="1.793,23" 
           label="Minhas Dispesas" 
-          icon={currencyIcon} 
+          icon={expenseIcon} 
         />
 
         <Card 
