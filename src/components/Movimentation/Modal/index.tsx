@@ -6,20 +6,14 @@ import TextField from '../../TextField'
 import Button from '../../Button'
 
 import closeIcon from '../../../assets/icons/close.svg'
+import { Type } from '../index'
 
 interface ModalProps {
   handleToggleModal(): void
+  type: Type | undefined
 }
 
-type Type = 'choose' | 'expense' | 'income'
-
-const Modal: React.FC<ModalProps> = ({ handleToggleModal }) => {
-
-  const [type, setType] = useState<Type>('choose')
-
-  const handleType = useCallback((type: Type) => {
-    setType(type)
-  }, [])
+const Modal: React.FC<ModalProps> = ({ handleToggleModal, type }) => {
 
   return (
     <Overlay>
@@ -27,22 +21,6 @@ const Modal: React.FC<ModalProps> = ({ handleToggleModal }) => {
         <button onClick={handleToggleModal} className="close">
           <img src={closeIcon} alt="Fechar modal"/>
         </button>
-
-        {type === 'choose' && (
-          <React.Fragment>
-            <Button 
-              variation="income"
-              label="Nova Receita" 
-              onClick={() => handleType('income')} 
-            />
-            
-            <Button 
-              variation="expense"
-              label="Nova Despesa" 
-              onClick={() => handleType('expense')} 
-            />
-          </React.Fragment>
-        )}
 
         {type === 'income' && (
           <React.Fragment>
