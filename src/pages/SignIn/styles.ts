@@ -3,6 +3,7 @@ import { shade } from 'polished'
 
 export const Container = styled.div`
   position: relative;
+  overflow: hidden;
 
   display: flex;
   align-items: center;

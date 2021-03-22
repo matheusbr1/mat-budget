@@ -1,41 +1,18 @@
-import React, { useCallback, useState } from 'react'
+import React from 'react'
 
 import { Container } from './styles'
 
 import { useTransition } from 'react-spring'
 
 import Toast from './Toast'
+import { ToastMessage } from '../../hooks/toast'
 
-export interface ToastMessage {
-  id: number
-  type?: 'success' | 'error' | 'info'
-  title: string
-  description?: string
+interface ToastContainerProps {
+  messages: ToastMessage[]
 }
 
-const ToastContainer: React.FC = () => {
+const ToastContainer: React.FC<ToastContainerProps> = ({ messages }) => {
 
-  const [messages,setMessages] = useState<ToastMessage[]>([
-    {
-      id: 0,
-      type: 'error',
-      title: 'Ocorreu um erro inesperado',
-      description: 'Erro ao tentar logar, tente novamente'
-    },
-    {
-      id: 1,
-      type: 'success',
-      title: 'Conta criada',
-      description: 'Conta criada com sucesso'
-    },
-    {
-      id: 2,
-      type: 'info',
-      title: 'Some info title',
-      description: 'Some info description'
-    }
-  ])
-  
   const messagesWithTransitions = useTransition(
       messages,
       message => message.id,
@@ -49,7 +26,7 @@ const ToastContainer: React.FC = () => {
   return (
     <Container>
       {messagesWithTransitions.map(({ item, key, props }) => (
-        <Toast key={key} message={item} />
+        <Toast key={key} message={item} style={props} />
       ))}
     </Container>
   )

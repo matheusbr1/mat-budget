@@ -7,5 +7,5 @@ export const Container = styled.div`
   padding: 30px;
   height: 100%;
   overflow: hidden;
-  z-index: 10
+  z-index: 10;
 `

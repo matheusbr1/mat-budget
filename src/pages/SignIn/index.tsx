@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react'
+import React, { useCallback, useEffect, useRef } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 
 import { Form } from '@unform/web'
@@ -11,8 +11,7 @@ import arrow from '../../assets/icons/arrow.svg'
 import manWalking from '../../assets/images/ilustration.png'
 
 import { Container, MainCard } from './styles'
-
-import Toasts from '../../components/ToastContainer'
+import { useToast } from '../../hooks/toast'
 
 const SignIn: React.FC = () => {
 
@@ -20,14 +19,40 @@ const SignIn: React.FC = () => {
 
   const history = useHistory()
 
+  const { addToast } = useToast()
+
+  useEffect(() => {
+
+    setTimeout(() => {
+      addToast({
+        type: 'error',
+        title: 'Erro na autenticação',
+        description: 'Ocorreu um erro ao fazer login, cheque as credenciais.'
+      })
+    }, 1000)
+
+    setTimeout(() => {
+      addToast({
+        type: 'success',
+        title: 'Conta criada',
+      })
+    }, 2000)
+
+    setTimeout(() => {
+      addToast({
+        title: 'Some info title',
+        description: 'Some info description'
+      })
+    }, 3000)
+
+  },[addToast])
+
   const handleSignIn = useCallback(() => {
     history.push('/dashboard')
   }, [history])
 
   return (
     <Container>
-
-      <Toasts />
 
       <MainCard>
         <h1>Faça seu Login</h1>

@@ -3,10 +3,14 @@ import GlobalStyles from './styles/global'
 
 import Routes from './routes'
 
+import AppProvider from '../src/hooks'
+
 function App() {
   return (
     <React.Fragment>
-      <Routes />
+      <AppProvider>
+        <Routes />
+      </AppProvider>
       <GlobalStyles />
     </React.Fragment>
   )
