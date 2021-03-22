@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { shade } from 'polished'
 
-export const Container = styled.div`
+export const Container = styled.button`
   width: 70px;
   height: 70px;
 
