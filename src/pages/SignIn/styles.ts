@@ -97,6 +97,6 @@ export const MainCard = styled.main`
 
     position: absolute;
     bottom: 50px;
-    right: 70px;
+    right: 60px;
   }
 `

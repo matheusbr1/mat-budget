@@ -1,6 +1,8 @@
 import React, { useCallback, useRef } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 
+import { FiCamera } from 'react-icons/fi'
+
 import { Form } from '@unform/web'
 import { FormHandles } from '@unform/core'
 
@@ -10,7 +12,7 @@ import TextField from '../../components/TextField'
 import closeIcon from '../../assets/icons/close.svg'
 import manWalking from '../../assets/images/ilustration.png'
 
-import { Container, MainCard, Header } from './styles'
+import { Container, MainCard, Header, AvatarInput } from './styles'
 import { useToast } from '../../hooks/toast'
 
 const Profile: React.FC = () => {
@@ -45,7 +47,13 @@ const Profile: React.FC = () => {
 
           <Header>
 
-            <img src="https://github.com/matheusbr1.png" alt="Matheus Baron" />
+            <AvatarInput>
+              <img src="https://github.com/matheusbr1.png" alt="Matheus Baron" />
+              <label htmlFor="avatar" >
+                <FiCamera />
+                <input type="file" id="avatar" onChange={() => {}} />
+              </label>
+            </AvatarInput>
             
             <h1>Matheus Baron Ribeiro</h1>
 

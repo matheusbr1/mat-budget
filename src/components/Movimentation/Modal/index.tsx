@@ -13,12 +13,33 @@ import Select from '../../Select'
 
 import { categories } from '../../../mocks'
 
+import { useToast } from '../../../hooks/toast'
+
 interface ModalProps {
   handleToggleModal(): void
   variation: Variation | undefined
 }
 
 const Modal: React.FC<ModalProps> = ({ handleToggleModal, variation }) => {
+  
+  const { addToast } = useToast()
+
+  const handleNewTransaction = useCallback((type: 'expense' | 'income') => {
+    
+    if(type === 'income') {
+      addToast({
+        type:'success',
+        title: 'Nova receita adicionada'
+      })
+    } else {
+      addToast({
+        type:'success',
+        title: 'Nova despesa adicionada'
+      })
+    }
+    
+    handleToggleModal()
+  }, [addToast, handleToggleModal])
 
   const [category, setCategory] = useState('Selecione')
 
@@ -55,7 +76,11 @@ const Modal: React.FC<ModalProps> = ({ handleToggleModal, variation }) => {
               ))}
             </Select>
 
-            <Button label="Salvar" variation="income" />
+            <Button 
+              label="Salvar" 
+              variation="income" 
+              onClick={() => handleNewTransaction('income')}
+            />
           </React.Fragment>
         )}
 
@@ -81,7 +106,12 @@ const Modal: React.FC<ModalProps> = ({ handleToggleModal, variation }) => {
               ))}
             </Select>
 
-            <Button label="Salvar" variation="expense" />
+            <Button 
+              label="Salvar" 
+              variation="expense" 
+              onClick={() => handleNewTransaction('expense')}
+            />
+
           </React.Fragment>
         )}
       </Container>

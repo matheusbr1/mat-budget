@@ -22,7 +22,7 @@ const inputVariations: any = {
 }
 
 export const Container = styled.div<InputProps>`
-  width: 70%;
+  width: 75%;
 
   input {
     width: 100%;

@@ -1,4 +1,5 @@
 import styled, { keyframes } from 'styled-components'
+import { shade } from 'polished'
 
 export const Container = styled.div`
   position: relative;
@@ -99,13 +100,54 @@ export const Header = styled.header`
   width: 100%;
 
   h1 {
-    font-size: 2rem;
+    font-size: 1.8rem;
     margin: 10px 0;
     font-weight: 500;
   }
 
   img {
-    height: 80px;
+    height: 75px;
     border-radius: 50%;
+  }
+`
+
+export const AvatarInput = styled.div`
+  position: relative;
+  align-self: center;
+
+  img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+  }
+
+  label {
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    background: var(--white-purple);
+    border-radius: 50%;
+    right: 0;
+    bottom: 0;
+    transition: background-color 0.2s;
+    cursor: pointer;
+
+    input {
+      display: none;
+    }
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      width: 18px;
+      height: 18px;
+      color: var(--white);
+    }
+
+    &:hover {
+      background: ${shade(0.2, '#9C69E2')}
+    }
   }
 `

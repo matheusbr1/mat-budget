@@ -106,7 +106,7 @@ export const MainCard = styled.main`
 
     position: absolute;
     bottom: 50px;
-    left: 70px;
+    left: 60px;
     
     img {
       transform: rotate(180deg)

@@ -28,7 +28,7 @@ const SignUp: React.FC = () => {
       description: 'Sua conta foi criada com sucesso e já pode ser utilizada!'
     })
 
-    history.push('/')
+    history.goBack()
   }, [history, addToast])
 
   return (

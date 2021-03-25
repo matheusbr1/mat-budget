@@ -1,5 +1,5 @@
 import React, { useCallback, useRef } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
 import { Form } from '@unform/web'
 import { FormHandles } from '@unform/core'
@@ -17,6 +17,8 @@ const SignUp: React.FC = () => {
 
   const formRef = useRef<FormHandles>(null)
 
+  const history = useHistory()
+
   const { addToast } = useToast()
 
   const handleSendRecoverEmail = useCallback((fields) => {
@@ -28,14 +30,16 @@ const SignUp: React.FC = () => {
       title: 'E-mail enviado!',
       description: 'O e-mail de recuperação foi enviado ao seu e-mail'
     })
-  }, [addToast])
+
+    history.goBack()
+  }, [history, addToast])
 
   return (
     <Container>
       <MainCard>
 
         <div className="titleContainer" >
-          <h1>Faça seu cadastro</h1>
+          <h1>Recuperação de senha</h1>
           <span>
             Informe um e-mail válido para receber instruções para a recuperação de senha
           </span>

@@ -39,7 +39,7 @@ export const Container = styled.button<ContainerProps>`
   
   ${(props) => buttonVariations[props.variation || 'default']}
 
-  width: 70%;
+  width: 75%;
   height: 50px;
 
   border-radius: 20px;
