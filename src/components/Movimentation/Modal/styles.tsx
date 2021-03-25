@@ -50,8 +50,7 @@ export const Container = styled.div`
 
     &:hover {
       img {
-        width: 25px;
-        /* transform: rotate(180deg) */
+        transform: rotate(180deg)
       }
     }
   }

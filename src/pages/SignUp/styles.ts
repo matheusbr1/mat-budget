@@ -49,21 +49,17 @@ export const MainCard = styled.main`
 
   margin: 10px;
 
-  width: 460px;
-  height: 630px;
+  height: 500px;
+  width: 380px;
 
   background: var(--white);
-  border-radius: 20px;
+  border-radius: 35px;
 
   box-shadow: -17px 8px 100px rgba(0, 0, 0, 0.05);
 
-  @media (max-height: 768px) {
-    height: 600px;
-  }
-
   form {
     width: 100%;
-    height: 50%;
+    height: 60%;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -71,14 +67,14 @@ export const MainCard = styled.main`
   }
 
   h1 {
-    font-size: 3.6rem;
+    font-size: 3.2rem;
     color: var(--title);
     font-weight: normal;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
   }
 
   div.titleContainer {
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     span {
       font-size: 1.4rem;
       color: var(--description);
@@ -107,8 +103,8 @@ export const MainCard = styled.main`
     width: 140px;
 
     position: absolute;
-    bottom: 70px;
-    left: 100px;
+    bottom: 30px;
+    left: 70px;
     
     img {
       transform: rotate(180deg)

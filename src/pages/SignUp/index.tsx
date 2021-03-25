@@ -1,5 +1,5 @@
-import React, { useRef } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useCallback, useRef } from 'react'
+import { Link, useHistory } from 'react-router-dom'
 
 import { Form } from '@unform/web'
 import { FormHandles } from '@unform/core'
@@ -11,10 +11,25 @@ import arrow from '../../assets/icons/arrow.svg'
 import manWalking from '../../assets/images/ilustration.png'
 
 import { Container, MainCard } from './styles'
+import { useToast } from '../../hooks/toast'
 
 const SignUp: React.FC = () => {
 
   const formRef = useRef<FormHandles>(null)
+
+  const { addToast } = useToast()
+
+  const history = useHistory()
+
+  const handleSignUp = useCallback(() => {
+    addToast({
+      type: 'success',
+      title: 'Conta criada',
+      description: 'Sua conta foi criada com sucesso e já pode ser utilizada!'
+    })
+
+    history.push('/')
+  }, [history, addToast])
 
   return (
     <Container>
@@ -25,7 +40,7 @@ const SignUp: React.FC = () => {
           <span>É gratuíto, rápido e fácil ;)</span>
         </div>
 
-        <Form ref={formRef} onSubmit={() => {}} >
+        <Form ref={formRef} onSubmit={handleSignUp} >
           
         <TextField placeholder="Nome" colorOnFill />
 

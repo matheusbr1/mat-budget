@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useCallback, useRef } from 'react'
 import { Link } from 'react-router-dom'
 
 import { Form } from '@unform/web'
@@ -11,10 +11,24 @@ import arrow from '../../assets/icons/arrow.svg'
 import manWalking from '../../assets/images/ilustration.png'
 
 import { Container, MainCard } from './styles'
+import { useToast } from '../../hooks/toast'
 
 const SignUp: React.FC = () => {
 
   const formRef = useRef<FormHandles>(null)
+
+  const { addToast } = useToast()
+
+  const handleSendRecoverEmail = useCallback((fields) => {
+
+    console.log(fields)
+
+    addToast({
+      type: 'success',
+      title: 'E-mail enviado!',
+      description: 'O e-mail de recuperação foi enviado ao seu e-mail'
+    })
+  }, [addToast])
 
   return (
     <Container>
@@ -27,7 +41,7 @@ const SignUp: React.FC = () => {
           </span>
         </div>
 
-        <Form ref={formRef} onSubmit={() => {}} >
+        <Form ref={formRef} onSubmit={handleSendRecoverEmail} >
 
           <TextField placeholder="E-mail" colorOnFill />
 
