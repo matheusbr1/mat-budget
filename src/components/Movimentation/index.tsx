@@ -6,12 +6,12 @@ import plusIcon from '../../assets/icons/plus.svg'
 import Modal from './Modal'
 import Options from './Options'
 
-export type Type = 'expense' | 'income'
+export type Variation = 'expense' | 'income'
 
 const Movimentation: React.FC<React.ButtonHTMLAttributes<HTMLButtonElement>> = 
   ({ ...rest }) => {
 
-  const [isOptionsActive, setIsOptionsActive] = useState(true)
+  const [isOptionsActive, setIsOptionsActive] = useState(false)
 
   const handleOptions = useCallback(() => {
     setIsOptionsActive(state => !state)
@@ -24,27 +24,27 @@ const Movimentation: React.FC<React.ButtonHTMLAttributes<HTMLButtonElement>> =
     setIsOptionsActive(false)
   }, [])
 
-  const [type, setType] = useState<Type | undefined>()
+  const [variation, setVariation] = useState<Variation | undefined>()
 
-  const handleType = useCallback((type: Type) => {
-    setType(type)
+  const handleVariation = useCallback((variation: Variation) => {
+    setVariation(variation)
   } ,[])
     
   return (
     <React.Fragment>
 
       {isModalOpen && (
-        <Modal type={type} handleToggleModal={handleToggleModal} />
+        <Modal variation={variation} handleToggleModal={handleToggleModal} />
       )}
 
       {isOptionsActive && !isModalOpen && (
         <Options 
-          handleType={handleType} 
+         handleVariation={handleVariation} 
           handleToggleModal={handleToggleModal} 
         />
       )}
 
-      <Container onClick={handleOptions} {...rest}>
+      <Container onClick={handleOptions} active={isOptionsActive} {...rest}>
         <img src={plusIcon} alt="Nova movimentação"/>
       </Container>
     </React.Fragment>

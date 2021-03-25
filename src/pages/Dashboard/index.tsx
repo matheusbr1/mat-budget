@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useCallback, useState } from 'react'
+import { MenuItem } from '@material-ui/core';
 
 import Card from '../../components/Card'
 import ProfileCard from '../../components/ProfileCard'
@@ -17,7 +18,16 @@ import expenseIcon from '../../assets/icons/expense.svg'
 
 import { Container, TopInfosGrid, CardsGrid, Grid } from './styles'
 
+import { mouths } from '../../mocks'
+
 const Dashboard: React.FC = () => {
+  
+  const [month, setMonth] = useState('Janeiro')
+
+  const handleSelect = useCallback((e) => {
+    setMonth(e.target.value)
+  },[])
+
   return (
     <Container>
 
@@ -30,7 +40,17 @@ const Dashboard: React.FC = () => {
           <span>MatBudget</span>
         </div>
 
-        <Select />
+        <Select 
+          value={month} 
+          onChange={handleSelect} 
+          style={{ width: '95%', padding: 4 }}
+          >
+          {mouths.map(month => (
+            <MenuItem value={month} key={month} style={{ fontSize: '1.6rem' }}>
+              { month }
+            </MenuItem>
+          ))}
+        </Select>
 
         <ProfileCard />
       </TopInfosGrid>

@@ -2,18 +2,29 @@ import React, { useCallback, useState } from 'react'
 
 import { Overlay, Container } from './styles'
 
+import { MenuItem } from '@material-ui/core'
+
 import TextField from '../../TextField'
 import Button from '../../Button'
 
 import closeIcon from '../../../assets/icons/close.svg'
-import { Type } from '../index'
+import { Variation } from '../index'
+import Select from '../../Select'
+
+import { categories } from '../../../mocks'
 
 interface ModalProps {
   handleToggleModal(): void
-  type: Type | undefined
+  variation: Variation | undefined
 }
 
-const Modal: React.FC<ModalProps> = ({ handleToggleModal, type }) => {
+const Modal: React.FC<ModalProps> = ({ handleToggleModal, variation }) => {
+
+  const [category, setCategory] = useState('Selecione')
+
+  const handleCategory = useCallback(e => {
+    setCategory(e.target.value)
+  }, [])
 
   return (
     <Overlay>
@@ -22,27 +33,55 @@ const Modal: React.FC<ModalProps> = ({ handleToggleModal, type }) => {
           <img src={closeIcon} alt="Fechar modal"/>
         </button>
 
-        {type === 'income' && (
+        {variation === 'income' && (
           <React.Fragment>
             <h2 className='income' >Nova Receita</h2>
 
-            <TextField />
+            <TextField 
+              variation={variation} 
+              mask='currency' 
+              placeholder="R$ 100,00" 
+            />
 
-            <TextField />
+            <Select 
+              value={category}
+              variation={variation}  
+              onChange={handleCategory} 
+              style={{ height: 50 }}>
+              {categories[variation].map(category => (
+                <MenuItem key={category} value={category} style={{ fontSize: '1.6rem'}}>
+                  { category }
+                </MenuItem>
+              ))}
+            </Select>
 
-            <Button label="salvar" variation="income" />
+            <Button label="Salvar" variation="income" />
           </React.Fragment>
         )}
 
-        {type === 'expense' && (
+        {variation === 'expense' && (
           <React.Fragment>
             <h2 className='expense' >Nova Despensa</h2>
 
-            <TextField />
+            <TextField 
+              variation={variation} 
+              mask='currency' 
+              placeholder="R$ 100,00" 
+            />
 
-            <TextField />
+            <Select 
+              value={category}
+              variation={variation}  
+              onChange={handleCategory} 
+              style={{ height: 50 }}>
+              {categories[variation].map(category => (
+                <MenuItem key={category} value={category} style={{ fontSize: '1.6rem'}}>
+                  { category }
+                </MenuItem>
+              ))}
+            </Select>
 
-            <Button label="salvar" variation="expense" />
+            <Button label="Salvar" variation="expense" />
           </React.Fragment>
         )}
       </Container>

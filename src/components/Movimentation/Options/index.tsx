@@ -1,21 +1,21 @@
 import React, { useCallback } from 'react'
-import { Type } from '../index'
+import { Variation } from '../index'
 
 import { Container, Overlay } from './styles'
 
 interface OptionsProps {
-  handleType(type: Type): void
+  handleVariation(variation: Variation): void
   handleToggleModal(): void
 }
 
-const Options: React.FC<OptionsProps> = ({ handleType, handleToggleModal }) => {
+const Options: React.FC<OptionsProps> = ({ handleVariation, handleToggleModal }) => {
 
-  const handleClick = useCallback((type: Type) => {
-    handleType(type)
+  const handleClick = useCallback((variation: Variation) => {
+    handleVariation(variation)
     handleToggleModal()
   }, [
     handleToggleModal, 
-    handleType
+    handleVariation
   ])
 
   return (

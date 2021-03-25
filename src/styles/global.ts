@@ -12,6 +12,8 @@ export default createGlobalStyle`
     --description: #A6ACBE;
     --field-border: #EAEDEE;
 
+    --input-text: #757575;
+
     --white: #FFFFFF;
     --orange: #FF7A00;
     --white-purple: #9C69E2;

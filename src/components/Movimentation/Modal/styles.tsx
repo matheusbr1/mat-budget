@@ -33,6 +33,7 @@ export const Container = styled.div`
   justify-content: center;
 
   button.close {
+    cursor: pointer;
     background: transparent;
     border: none;
 
@@ -44,6 +45,14 @@ export const Container = styled.div`
 
     img {
       width: 20px;
+      transition: 0.2s;
+    }
+
+    &:hover {
+      img {
+        width: 25px;
+        /* transform: rotate(180deg) */
+      }
     }
   }
 

@@ -59,9 +59,9 @@ const SignIn: React.FC = () => {
 
         <Form ref={formRef} onSubmit={handleSignIn} >
 
-          <TextField placeholder="E-mail" />
+          <TextField placeholder="E-mail" colorOnFill />
           
-          <TextField placeholder="Senha" />
+          <TextField placeholder="Senha" colorOnFill />
 
           <Button label="Entrar" />
 

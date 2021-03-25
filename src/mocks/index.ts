@@ -1,4 +1,21 @@
-export const monthList = [
+export const categories = {
+  expense: [
+    'Selecione',
+    'Vestuário',
+    'Moradia',
+    'Lazer',
+    'Educação',
+    'Alimentação'
+  ],
+  income: [
+    'Selecione',
+    'Salário',
+    '13º Salário',
+    'Proventos'
+  ]
+}
+
+export const mouths = [
   'Janeiro',
   'Fevereiro',
   'Março',
@@ -13,7 +30,7 @@ export const monthList = [
   'Dezembro',
 ]
 
-export const transactionsList = [
+export const transactions = [
   {
     id: 1,
     label: 'Mc Donald’s',

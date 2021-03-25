@@ -29,7 +29,7 @@ const SignUp: React.FC = () => {
 
         <Form ref={formRef} onSubmit={() => {}} >
 
-          <TextField placeholder="E-mail" />
+          <TextField placeholder="E-mail" colorOnFill />
 
           <Button label="Enviar" />
         </Form>

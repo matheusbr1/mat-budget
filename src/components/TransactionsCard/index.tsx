@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-import { transactionsList } from '../../mocks'
+import { transactions as list } from '../../mocks'
 import Dot from '../Dot'
 
 import { Container } from './styles'
 
 const TransactionsCard: React.FC = () => {
 
-  const [transactions] = useState(transactionsList) 
+  const [transactions] = useState(list) 
 
   return (
     <Container>

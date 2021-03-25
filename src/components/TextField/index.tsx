@@ -2,9 +2,15 @@ import React, { useCallback, useRef, useState } from 'react'
 
 import { Container } from './styles'
 
-type TextFieldProps = React.InputHTMLAttributes<HTMLInputElement>
+import { currency } from '../../utils/masks'
 
-const TextField: React.FC<TextFieldProps> = ({ ...rest }) => {
+interface TextFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  variation?: 'expense' | 'income'
+  mask?: 'currency'
+  colorOnFill?: boolean
+}
+
+const TextField: React.FC<TextFieldProps> = ({ mask, variation, colorOnFill, ...rest }) => {
 
   const inputRef = useRef<HTMLInputElement>(null)
 
@@ -20,12 +26,27 @@ const TextField: React.FC<TextFieldProps> = ({ ...rest }) => {
       setIsFocused(true)
   }, [])
 
+  const handleKeyUp = useCallback((e: React.FormEvent<HTMLInputElement>) => {
+
+    switch (mask) {
+      case 'currency' : currency(e)
+        break
+      default: 
+        return e
+    }
+  }, [mask])
+
   return (
-    <Container isFocused={isFocused} isFilled={isFilled} >
+    <Container 
+      isFocused={isFocused} 
+      isFilled={isFilled && !!colorOnFill} 
+      variation={variation || 'default'}
+    >
       <input 
         ref={inputRef}
         onBlur={handleInputBlur}
         onFocus={handleInputFocus}
+        onKeyUp={handleKeyUp}
         {...rest} 
       />
     </Container>
