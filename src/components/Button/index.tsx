@@ -4,11 +4,12 @@ import { Container } from './styles'
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   label: string
+  variation?: 'expense' | 'income'
 }
 
-const Button: React.FC<ButtonProps> = ({ label,...rest }) => {
+const Button: React.FC<ButtonProps> = ({ label, variation, ...rest }) => {
   return (
-    <Container {...rest}>
+    <Container {...rest} variation={variation || 'default'}>
       {label}
     </Container>
   )

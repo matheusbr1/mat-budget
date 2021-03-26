@@ -1,54 +1,90 @@
-import React, { useCallback, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 
-import { Container, Options, Option } from './styles'
+import { useField } from '@unform/core'
 
-import caretDown from '../../assets/icons/caretDown.svg'
+import { Container } from './styles'
 
-const Select: React.FC = () => {
+import { Select as MaterialSelect } from '@material-ui/core';
 
-  const [isOpen, setIsOpen] = useState(false)
+interface SelectProps {
+  value: any
+  name: string
+  style?: React.CSSProperties
+  variation?: 'expense' | 'income'
+  onChange(e: React.ChangeEvent<any>):void
+}
 
-  const [currentOption, setCurrentOption] = useState('Selecione')
+const Select: React.FC<SelectProps> = (
+  { value, name, onChange, variation, style, children }
+) => {
 
-  const handleClick = useCallback(() => {
-    setIsOpen(!isOpen)
-  }, [isOpen])
-  
-  const handleBlur = useCallback(() => {
-    setIsOpen(false)
-  },[])
+  const inputRef = useRef<HTMLInputElement>(null)
 
-  const handleSelect = useCallback((e) => {
-    setCurrentOption(e.target.innerText)
-  },[])
+  const { fieldName, registerField, error } = useField(name)
+
+  useEffect(() => {
+      registerField({
+        name,
+        ref: inputRef,
+        getValue: ref => {
+          return ref.current.value
+        },
+        setValue: (ref, value) => {
+          ref.current.value = value
+        },
+        clearValue: ref => {
+          ref.current.value = ''
+        },
+      })
+  }, [name, registerField, fieldName])
+
+  const styles = {
+    fontSize: '1.6rem',
+    borderRadius: 20,
+    border: '1px solid var(--field-border)',
+    color: 'var(--input-text)',
+    ...style
+  }
 
   return (
-    <Container onBlur={handleBlur} onClick={handleClick} isOpen={isOpen} >
-      <span>{currentOption}</span>
-
-      <img src={caretDown} alt="Selecione" />
-
-      {
-        isOpen && (
-          <Options>
-            <Option onClick={handleSelect}>Janeiro</Option>
-            <Option onClick={handleSelect}>Fevereiro</Option>
-            <Option onClick={handleSelect}>Março</Option>
-            <Option onClick={handleSelect}>Abril</Option>
-            <Option onClick={handleSelect}>Maio</Option>
-            <Option onClick={handleSelect}>Junho</Option>
-            <Option onClick={handleSelect}>Julho</Option>
-            <Option onClick={handleSelect}>Agosto</Option>
-            <Option onClick={handleSelect}>Setembro</Option>
-            <Option onClick={handleSelect}>Outubro</Option>
-            <Option onClick={handleSelect}>Novembro</Option>
-            <Option onClick={handleSelect}>Dezembro</Option>
-          </Options>
-        )
-      }
-   
+    <Container variation={variation || 'default'} >
+      <MaterialSelect
+        inputRef={inputRef}
+        variant='outlined'
+        onChange={onChange}
+        value={value}
+        style={styles}
+      >
+        {children}
+      </MaterialSelect>
+      {error}
     </Container>
   )
 }
 
 export default Select
+
+export const Unregistered: React.FC<Omit<SelectProps, 'name'>> = (
+  { value, onChange, variation, style, children }
+) => {
+  const styles = {
+    fontSize: '1.6rem',
+    borderRadius: 20,
+    border: '1px solid var(--field-border)',
+    color: 'var(--input-text)',
+    ...style
+  }
+
+  return (
+    <Container variation={variation || 'default'} >
+      <MaterialSelect
+        variant='outlined'
+        onChange={onChange}
+        value={value}
+        style={styles}
+      >
+        {children}
+      </MaterialSelect>
+    </Container>
+  )
+}

@@ -2,12 +2,22 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
   width: calc(50% - 5px);
-  height: 572px;
+  height: max-content;
   max-width: 95vw;
 
   border-radius: 20px;
   background: var(--white);
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.2));
+
+  transition: 0.2s;
+
+  &:hover {
+    filter: drop-shadow(0px 4px 4px rgba(156, 105, 226, 0.5));
+  }
+
+  @media (max-width: 580px) {
+    width: 100%;
+  }
 
   div.title {
     padding: 25px;

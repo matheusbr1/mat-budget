@@ -1,7 +1,11 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { shade } from 'polished'
 
-export const Container = styled.div`
+interface ButtonProps {
+  active: boolean
+}
+
+export const Container = styled.button<ButtonProps>`
   width: 70px;
   height: 70px;
 
@@ -20,7 +24,13 @@ export const Container = styled.div`
 
   z-index: 20;
 
+  transition: 0.2s;
+
+  ${props => props.active && css` 
+    transform: rotate(45deg);
+  `}
+
   &:hover {
-    background: ${shade(0.2, '#6F52ED')}
+    background: ${shade(0.2, '#6F52ED')};
   }
 `

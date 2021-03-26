@@ -40,10 +40,15 @@ export const Container = styled.div`
     color: var(--description);
   }
 
-  img.profile {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+  button {
+    background: transparent;
+    cursor: pointer;
+
+    img.profile {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+    }
   }
 
   img.logout {

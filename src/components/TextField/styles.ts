@@ -1,12 +1,28 @@
 import styled, { css } from 'styled-components'
 
 interface InputProps {
-  isFocused: boolean;
-  isFilled: boolean;
+  isFocused: boolean
+  isFilled: boolean
+  variation:  'expense' | 'income' | 'default'
+}
+
+const inputVariations: any = {
+  expense:  css`
+    border-color: var(--red);
+    color: var(--red);
+` ,
+  income:  css`
+    border-color: var(--green);
+    color: var(--green);
+` , 
+  default: css`
+    border-color: var(--white-purple);
+    color: var(--white-purple);
+  ` 
 }
 
 export const Container = styled.div<InputProps>`
-  width: 70%;
+  width: 75%;
 
   input {
     width: 100%;
@@ -21,19 +37,18 @@ export const Container = styled.div<InputProps>`
     border: 2px solid var(--field-border);
     border-radius: 20px;
 
-    color: var(--description);
+    color: var(--input-text);
 
-    ${props => (props.isFilled || props.isFocused) && css`
-      border-color: var(--white-purple);
-      color: var(--white-purple);
-    `}
+    ${props => (props.isFilled || props.isFocused) &&
+      inputVariations[props.variation]
+    }
 
     &::placeholder {
-      color: var(--description);
+      ${props => props.isFocused && inputVariations[props.variation]}
+    }
 
-      ${props => props.isFocused && css`
-        color: var(--white-purple);
-      `}
+    &:hover {
+      ${props => inputVariations[props.variation]}
     }
   }
 `

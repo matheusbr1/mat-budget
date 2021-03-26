@@ -2,6 +2,13 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
   max-height: 850px;
+  height: fit-content;
+  
+  transition: 0.2s;
+
+  &:hover {
+    filter: drop-shadow(0px 4px 4px rgba(156, 105, 226, 0.5));
+  }
 
   @media (max-width: 1024px) {
     max-height: 400px;
@@ -9,6 +16,7 @@ export const Container = styled.div`
 
   width: 100%;
   overflow-y: scroll;
+  overflow-y: hidden;
 
   background: var(--white);
   border-radius: 20px;
@@ -25,7 +33,7 @@ export const Container = styled.div`
     }
   }
 
-  div.categorys {
+  div.transactions {
     display: flex;
     flex-direction: column;
     

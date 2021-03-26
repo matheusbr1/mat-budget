@@ -7,16 +7,19 @@ const BalanceCard: React.FC = () => {
 
   const categorys = [
     {
+      id: 1,
       label: 'Receitas',
       color: 'var(--purple)',
       value: '10.501,75,00'
     },
     {
+      id: 2,
       label: 'Despesas',
       color: 'var(--orange)',
       value: '3.921,35'
     },
     {
+      id: 3,
       label: 'Balanço',
       color: 'var(--green)',
       value: '3.580,40'
@@ -32,7 +35,7 @@ const BalanceCard: React.FC = () => {
       <div className="categorys">
           {
             categorys.map(category => (
-              <div className="line">
+              <div className="line" key={category.id}>
                 <div>
                   <Dot color={category.color} />
                   <p>{category.label}</p>

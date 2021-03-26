@@ -3,6 +3,7 @@ import { shade } from 'polished'
 
 export const Container = styled.div`
   position: relative;
+  overflow: hidden;
 
   display: flex;
   align-items: center;
@@ -19,6 +20,23 @@ export const Container = styled.div`
     height: 350px
   }
 
+  .close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+
+    img {
+      width: 20px;
+      transition: 0.2s;
+    }
+
+    &:hover {
+      img {
+        transform: rotate(180deg)
+      }
+    }
+  }
+
   @media (max-width: 1215px) {
     img.ilustration {
       display: none;  
@@ -29,7 +47,7 @@ export const Container = styled.div`
 export const appearFromLeft = keyframes`
     from {
         opacity: 0;
-        transform: translateY(-50px)
+        transform: translateY(50px)
     }
     to {
         opacity: 1;
@@ -49,8 +67,8 @@ export const MainCard = styled.main`
 
   margin: 10px;
 
-  height: 500px;
-  width: 380px;
+  height: 600px;
+  width: 400px;
 
   background: var(--white);
   border-radius: 35px;
@@ -59,7 +77,7 @@ export const MainCard = styled.main`
 
   form {
     width: 100%;
-    height: 60%;
+    height: 100%;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -70,44 +88,66 @@ export const MainCard = styled.main`
     font-size: 3.2rem;
     color: var(--title);
     font-weight: normal;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+  }
+`
+
+export const Header = styled.header`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+
+  h1 {
+    font-size: 1.8rem;
+    margin: 10px 0;
+    font-weight: 500;
   }
 
-  div.titleContainer {
-    margin-bottom: 10px;
-    span {
-      font-size: 1.4rem;
-      color: var(--description);
+  img {
+    height: 75px;
+    border-radius: 50%;
+  }
+`
+
+export const AvatarInput = styled.div`
+  position: relative;
+  align-self: center;
+
+  img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+  }
+
+  label {
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    background: var(--white-purple);
+    border-radius: 50%;
+    right: 0;
+    bottom: 0;
+    transition: background-color 0.2s;
+    cursor: pointer;
+
+    input {
+      display: none;
     }
-  }
 
-  a {
-    font-size: 1.4rem;
-    color: var(--description);
-    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    transition: color 0.2s;
-
-    margin-top: 10px;
+    svg {
+      width: 18px;
+      height: 18px;
+      color: var(--white);
+    }
 
     &:hover {
-      color: ${shade(0.2, '#A6ACBE')}
-    }
-  }
-
-  a.signin {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    width: 140px;
-
-    position: absolute;
-    bottom: 30px;
-    left: 60px;
-    
-    img {
-      transform: rotate(180deg)
+      background: ${shade(0.2, '#9C69E2')}
     }
   }
 `

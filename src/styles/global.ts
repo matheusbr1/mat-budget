@@ -2,11 +2,17 @@ import { createGlobalStyle } from 'styled-components'
 
 export default createGlobalStyle`
 
+  .MuiListItemText-primary {
+    font-size: 1.6rem !important;
+  }
+
   :root {
     --background: #F8F8FB;
     --title: #283E58;
     --description: #A6ACBE;
     --field-border: #EAEDEE;
+
+    --input-text: #757575;
 
     --white: #FFFFFF;
     --orange: #FF7A00;

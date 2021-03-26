@@ -15,6 +15,14 @@ export const Container = styled.div`
     width: 100%;
     max-width: 95vw;
     grid-area: doughnutChart;
+
+    @media (max-width: 580px) {
+      flex-direction: column;
+      
+      > div:nth-child(1) {
+        margin-bottom: 10px;
+      }
+    }
   }
 
   div.title {

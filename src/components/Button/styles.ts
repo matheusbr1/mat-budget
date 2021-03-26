@@ -1,17 +1,47 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { shade } from 'polished'
 
-export const Container = styled.button`
+interface ContainerProps {
+  variation: 'default' | 'expense' | 'income'
+}
+
+const buttonVariations = {
+  default: css`
+    background: var(--white-purple);
+    color: var(--white);
+
+    &:hover {
+      background: ${shade(0.2, '#9C69E2')}
+    }
+  `,
+  expense: css`
+    background: var(--red);
+    color: var(--white);
+
+    &:hover {
+      background: ${shade(0.2, '#FF4C61')}
+    }
+  `,
+  income: css`
+    background: var(--green);
+    color: var(--white);
+
+    &:hover {
+      background: ${shade(0.2, '#33D69F')}
+    }
+  `
+}
+
+export const Container = styled.button<ContainerProps>`
   display: flex;
   align-items: center;
   justify-content: center;
   
-  background: var(--white-purple);
+  ${(props) => buttonVariations[props.variation || 'default']}
 
-  width: 70%;
+  width: 75%;
   height: 50px;
 
-  color: var(--white);
   border-radius: 20px;
 
   font-weight: bold;
@@ -25,9 +55,5 @@ export const Container = styled.button`
     width: 20px;
     height: 20px;
     margin-right: 8px;
-  }
-
-  &:hover {
-    background: ${shade(0.2, '#9C69E2')}
   }
 `
