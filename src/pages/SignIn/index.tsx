@@ -1,5 +1,6 @@
 import React, { useCallback, useRef } from 'react'
 import { Link, useHistory } from 'react-router-dom'
+import * as yup from  'yup'
 
 import { Form } from '@unform/web'
 import { FormHandles } from '@unform/core'
@@ -11,6 +12,7 @@ import arrow from '../../assets/icons/arrow.svg'
 import manWalking from '../../assets/images/ilustration.png'
 
 import { Container, MainCard } from './styles'
+import getValidationErrors from '../../utils/validationFormErrors'
 
 const SignIn: React.FC = () => {
 
@@ -18,8 +20,34 @@ const SignIn: React.FC = () => {
 
   const history = useHistory()
 
-  const handleSignIn = useCallback(() => {
-    history.push('/dashboard')
+  const handleSignIn = useCallback(async (fields) => {
+
+    try {
+      const schema = yup.object().shape({
+        email: yup.string()
+          .email('E-mail inválido')
+          .required('Campo obrigatório'),
+        password: yup.string()
+          .max(10, 'No máximo 10 caracteres')
+          .min(5, 'No mínimo 5 caracteres')
+          .required('Campo obrigatório'),
+      })
+  
+      await schema.validate(fields, {
+        abortEarly: false
+      })
+  
+      console.log(fields)
+
+      history.push('/dashboard')
+    } catch (error) {
+      if(error instanceof yup.ValidationError) {
+        const errors = getValidationErrors(error)
+        formRef.current?.setErrors(errors)
+        console.log(errors)
+      }
+    }
+    
   }, [history])
 
   return (
@@ -31,13 +59,15 @@ const SignIn: React.FC = () => {
         <Form ref={formRef} onSubmit={handleSignIn} >
 
           <TextField 
+            name='email'
             placeholder="E-mail" 
             colorOnFill 
           />
           
           <TextField 
-            placeholder="Senha" 
+            name='password'
             type='password' 
+            placeholder="Senha" 
             colorOnFill 
           />
 

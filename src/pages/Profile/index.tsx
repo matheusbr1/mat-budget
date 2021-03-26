@@ -1,5 +1,6 @@
 import React, { useCallback, useRef } from 'react'
 import { Link, useHistory } from 'react-router-dom'
+import * as yup from 'yup'
 
 import { FiCamera } from 'react-icons/fi'
 
@@ -14,6 +15,7 @@ import manWalking from '../../assets/images/ilustration.png'
 
 import { Container, MainCard, Header, AvatarInput } from './styles'
 import { useToast } from '../../hooks/toast'
+import getValidationErrors from '../../utils/validationFormErrors'
 
 const Profile: React.FC = () => {
 
@@ -23,15 +25,62 @@ const Profile: React.FC = () => {
 
   const history = useHistory()
 
-  const handleChangeProfile = useCallback(() => {
-    addToast({
-      type: 'success',
-      title: 'Perfil Atualizado',
-      description: 'Seu perfil foi atualizado com sucesso, as novas informações já foram salvas'
-    })
+  const handleChangeProfile = useCallback(async (fields) => {
+
+    console.log(fields)
 
 
-    history.push('/dashboard')
+    try {
+
+      const schema = yup.object().shape({
+        name: yup.string(),
+        
+        email: yup.string()
+          .email('E-mail inválido'),
+        
+        oldPassword: yup.string(),
+
+        newPassword: yup.string().when('oldPassword', {
+          is: (value: string) => !!value,
+          then: yup.string()
+            .max(10, 'No máximo 10 caracteres')
+            .min(5, 'No mínimo 5 caracteres')
+            .required('Campo obrigatório')
+        }),
+
+        newPasswordConfirmation: yup.string().when('newPassword', {
+          is: (value: string) => !!value,
+          then: yup.string()
+            .max(10, 'No máximo 10 caracteres')
+            .min(5, 'No mínimo 5 caracteres')
+            .required('Campo obrigatório')
+          })
+          .oneOf(
+            [yup.ref('newPassword'), undefined],
+            'Confirmação incorreta'
+          )
+      })
+
+      await schema.validate(fields, {
+        abortEarly: false
+      })
+
+      addToast({
+        type: 'success',
+        title: 'Perfil Atualizado',
+        description: 'Seu perfil foi atualizado com sucesso, as novas informações já foram salvas'
+      })
+  
+      history.push('/dashboard')
+
+    } catch (error) {
+      if(error instanceof yup.ValidationError) {
+        const errors = getValidationErrors(error)
+        formRef.current?.setErrors(errors)
+        console.log(errors)
+      }
+    }
+
   }, [history, addToast])
 
   return (
@@ -59,17 +108,43 @@ const Profile: React.FC = () => {
 
           </Header>
 
-          <TextField placeholder="Nome" colorOnFill />
+          <TextField 
+            colorOnFill 
+            placeholder="Nome" 
+            name='name'
+          />
           
-          <TextField placeholder="E-mail" colorOnFill />
+          <TextField 
+            colorOnFill 
+            placeholder="E-mail" 
+            name="email" 
+          />
           
-          <TextField placeholder="Senha Atual" colorOnFill />
+          <TextField 
+            colorOnFill 
+            placeholder="Senha Atual" 
+            type='password'
+            name="oldPassword" 
+          />
           
-          <TextField placeholder="Nova Senha" colorOnFill />
+          <TextField 
+            colorOnFill 
+            placeholder="Nova Senha" 
+            type='password'
+            name="newPassword" 
+          />
           
-          <TextField placeholder="Confirme a nova Senha" colorOnFill />
+          <TextField 
+            colorOnFill 
+            placeholder="Confirme a nova Senha" 
+            type='password'
+            name="newPasswordConfirmation" 
+          />
 
-          <Button label="Salvar" />
+          <Button 
+            label="Salvar" 
+            type='submit' 
+          />
         </Form>
       
       </MainCard>

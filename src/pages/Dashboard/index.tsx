@@ -6,7 +6,7 @@ import ProfileCard from '../../components/ProfileCard'
 import BalanceCard from '../../components/BalanceCard'
 import TransactionsCard from '../../components/TransactionsCard'
 
-import Select from '../../components/Select'
+import { Unregistered as Select } from '../../components/Select'
 import Movimentation from '../../components/Movimentation'
 
 import DoughnutChart from '../../components/DoughnutChart'

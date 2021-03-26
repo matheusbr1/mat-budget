@@ -1,6 +1,8 @@
 import React, { useCallback, useRef } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 
+import * as yup from 'yup'
+
 import { Form } from '@unform/web'
 import { FormHandles } from '@unform/core'
 
@@ -12,6 +14,7 @@ import manWalking from '../../assets/images/ilustration.png'
 
 import { Container, MainCard } from './styles'
 import { useToast } from '../../hooks/toast'
+import getValidationErrors from '../../utils/validationFormErrors'
 
 const SignUp: React.FC = () => {
 
@@ -21,14 +24,42 @@ const SignUp: React.FC = () => {
 
   const history = useHistory()
 
-  const handleSignUp = useCallback(() => {
-    addToast({
-      type: 'success',
-      title: 'Conta criada',
-      description: 'Sua conta foi criada com sucesso e já pode ser utilizada!'
-    })
+  const handleSignUp = useCallback(async (fields) => {
+    
+    try {
+      
+      const schema = yup.object().shape({
+        name: yup.string()
+          .required('Campo obrigatório'),
+        email: yup.string()
+          .email('E-mail inválido')
+          .required('Campo obrigatório'),
+        password: yup.string()
+          .max(10, 'No máximo 10 caracteres')
+          .min(5, 'No mínimo 5 caracteres')
+          .required('Campo obrigatório'),
+      })
 
-    history.goBack()
+      await schema.validate(fields, {
+        abortEarly: false
+      })
+
+      addToast({
+        type: 'success',
+        title: 'Conta criada',
+        description: 'Sua conta foi criada com sucesso e já pode ser utilizada!'
+      })
+  
+      history.goBack()
+
+    } catch (error) {
+      if(error instanceof yup.ValidationError) {
+        const errors = getValidationErrors(error)
+        formRef.current?.setErrors(errors)
+        console.log(errors)
+      }
+    }
+    
   }, [history, addToast])
 
   return (
@@ -42,11 +73,24 @@ const SignUp: React.FC = () => {
 
         <Form ref={formRef} onSubmit={handleSignUp} >
           
-        <TextField placeholder="Nome" colorOnFill />
+          <TextField 
+            name='name'
+            placeholder="Nome" 
+            colorOnFill 
+          />
 
-          <TextField placeholder="E-mail" colorOnFill />
+          <TextField 
+            name='email'
+            placeholder="E-mail" 
+            colorOnFill 
+          />
           
-          <TextField placeholder="Senha" colorOnFill />
+          <TextField 
+            type='password'
+            name='password'
+            placeholder="Senha" 
+            colorOnFill 
+          />
 
           <Button label="Cadastrar" />
         </Form>

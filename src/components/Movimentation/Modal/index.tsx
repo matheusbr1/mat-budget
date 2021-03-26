@@ -1,4 +1,9 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useState, useRef } from 'react'
+
+import * as yup from 'yup'
+
+import { FormHandles } from '@unform/core'
+import { Form } from '@unform/web'
 
 import { Overlay, Container } from './styles'
 
@@ -14,6 +19,8 @@ import Select from '../../Select'
 import { categories } from '../../../mocks'
 
 import { useToast } from '../../../hooks/toast'
+import getValidationErrors from '../../../utils/validationFormErrors'
+
 
 interface ModalProps {
   handleToggleModal(): void
@@ -21,24 +28,70 @@ interface ModalProps {
 }
 
 const Modal: React.FC<ModalProps> = ({ handleToggleModal, variation }) => {
-  
+
+  const incomeFormRef = useRef<FormHandles>(null)
+  const expenseFormRef = useRef<FormHandles>(null)
+
   const { addToast } = useToast()
 
-  const handleNewTransaction = useCallback((type: 'expense' | 'income') => {
-    
-    if(type === 'income') {
-      addToast({
-        type:'success',
-        title: 'Nova receita adicionada'
+  const handleExpense = useCallback(async (fields) => {
+
+    try {
+
+      const schema = yup.object().shape({
+        value: yup.string()
+          .max(17 ,'Valor inválido')
+          .min(3, 'Valor inválido')
+          .required('Campo obrigatório')
       })
-    } else {
+
+      await schema.validate(fields, {
+        abortEarly: false
+      })
+
       addToast({
         type:'success',
         title: 'Nova despesa adicionada'
       })
+  
+      handleToggleModal()
+      
+    } catch (error) {
+      if (error instanceof yup.ValidationError) {
+        const errors = getValidationErrors(error)
+        expenseFormRef.current?.setErrors(errors)
+      }
     }
-    
-    handleToggleModal()
+  }, [addToast, handleToggleModal])
+
+  const handleIncome = useCallback(async (fields) => {
+
+    try {
+
+      const schema = yup.object().shape({
+        value: yup.string()
+          .max(17 ,'Valor inválido')
+          .min(3, 'Valor inválido')
+          .required('Campo obrigatório')
+      })
+
+      await schema.validate(fields, {
+        abortEarly: false
+      })
+
+      addToast({
+        type:'success',
+        title: 'Nova receita adicionada'
+      })
+  
+      handleToggleModal()
+      
+    } catch (error) {
+      if (error instanceof yup.ValidationError) {
+        const errors = getValidationErrors(error)
+        incomeFormRef.current?.setErrors(errors)
+      }
+    }
   }, [addToast, handleToggleModal])
 
   const [category, setCategory] = useState('Selecione')
@@ -55,16 +108,18 @@ const Modal: React.FC<ModalProps> = ({ handleToggleModal, variation }) => {
         </button>
 
         {variation === 'income' && (
-          <React.Fragment>
+          <Form ref={incomeFormRef} onSubmit={handleIncome} >
             <h2 className='income' >Nova Receita</h2>
 
             <TextField 
+              name='value'
               variation={variation} 
               mask='currency' 
               placeholder="R$ 100,00" 
             />
 
             <Select 
+              name='category'
               value={category}
               variation={variation}  
               onChange={handleCategory} 
@@ -78,23 +133,26 @@ const Modal: React.FC<ModalProps> = ({ handleToggleModal, variation }) => {
 
             <Button 
               label="Salvar" 
+              type='submit'
               variation="income" 
-              onClick={() => handleNewTransaction('income')}
             />
-          </React.Fragment>
+          </Form>
         )}
 
         {variation === 'expense' && (
-          <React.Fragment>
+          <Form ref={expenseFormRef} onSubmit={handleExpense} >
+            
             <h2 className='expense' >Nova Despensa</h2>
 
             <TextField 
+              name='value'
               variation={variation} 
               mask='currency' 
               placeholder="R$ 100,00" 
             />
 
             <Select 
+              name='category'
               value={category}
               variation={variation}  
               onChange={handleCategory} 
@@ -109,10 +167,9 @@ const Modal: React.FC<ModalProps> = ({ handleToggleModal, variation }) => {
             <Button 
               label="Salvar" 
               variation="expense" 
-              onClick={() => handleNewTransaction('expense')}
+              type='submit'
             />
-
-          </React.Fragment>
+          </Form>
         )}
       </Container>
     </Overlay>
