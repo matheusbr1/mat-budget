@@ -76,7 +76,7 @@ export const Container = styled.div`
     color: var(--red);
   }
 
-  div, button {
+  button {
     width: 100%;
   }
 `

@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 import { Container } from './styles'
 
@@ -12,6 +12,10 @@ const ProfileCard: React.FC = () => {
   const handleNavigateToProfile = useCallback(() => {
     history.push('/profile')
   }, [history])
+
+  const handleSignOut = useCallback(() => {
+    history.push('/')
+  }, [history]) 
 
   return (
     <Container>
@@ -30,9 +34,9 @@ const ProfileCard: React.FC = () => {
         />
       </button>
       
-      <Link to="/">
+      <button onClick={handleSignOut} >
         <img src={logout} alt="Logout" className="logout"/>
-      </Link>
+      </button>
 
     </Container>
   )

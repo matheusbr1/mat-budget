@@ -96,7 +96,7 @@ const SignUp: React.FC = () => {
           <Button label="Cadastrar" />
         </Form>
          
-        <Link to='/' className='signin'>
+        <Link to='/' className='sign-in'>
           <img src={arrow} alt='Voltar para o login'/>
           Voltar para o login
         </Link>

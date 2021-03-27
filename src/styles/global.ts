@@ -14,9 +14,11 @@ export default createGlobalStyle`
 
     --input-text: #757575;
 
+    --input-error: #cc0000;
+
     --white: #FFFFFF;
     --orange: #FF7A00;
-    --white-purple: #9C69E2;
+    --light-purple: #9C69E2;
     --purple: #6F52ED;
     --red: #FF4C61;
     --green: #33D69F;

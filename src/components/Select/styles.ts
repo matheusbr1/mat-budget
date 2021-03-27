@@ -12,7 +12,7 @@ const selectVariations: any = {
     border-color: var(--green);
 ` , 
   default: css`
-    border-color: var(--white-purple)
+    border-color: var(--light-purple)
   ` 
 }
 
@@ -28,7 +28,7 @@ export const Container = styled.div<ContainerProps>`
   }
 
   .Mui-focused {
-    color: var(--white-purple);
+    color: var(--light-purple);
   }
 
   .PrivateNotchedOutline-root-1 {

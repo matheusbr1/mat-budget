@@ -68,8 +68,4 @@ export const Infos = styled.main`
     font-size: 1.4rem;
     color: var(--description);
   }
-
-  @media (max-width: 1180px) {
-    width: 70%;
-  }
 `

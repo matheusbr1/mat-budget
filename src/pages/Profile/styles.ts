@@ -9,7 +9,7 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
 
-  background: var(--white-purple);
+  background: var(--light-purple);
   height: 100vh;
 
   img.ilustration {
@@ -66,6 +66,7 @@ export const MainCard = styled.main`
   justify-content: center;
 
   margin: 10px;
+  padding: 0 45px;
 
   height: 600px;
   width: 400px;
@@ -125,7 +126,7 @@ export const AvatarInput = styled.div`
     position: absolute;
     width: 35px;
     height: 35px;
-    background: var(--white-purple);
+    background: var(--light-purple);
     border-radius: 50%;
     right: 0;
     bottom: 0;

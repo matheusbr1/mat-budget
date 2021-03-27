@@ -76,11 +76,11 @@ const TextField: React.FC<TextFieldProps> = (
         {...rest} 
       />
       
-        {error && (
-          <Error title={error}>
-            <FiAlertCircle color='var(--red)' size={25} />
-          </Error>
-        )}
+      {error && (
+        <Error title={error}>
+          <FiAlertCircle color='var(--input-error)' size={25} />
+        </Error>
+      )}
 
     </Container>
   )

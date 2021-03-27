@@ -21,7 +21,6 @@ import { categories } from '../../../mocks'
 import { useToast } from '../../../hooks/toast'
 import getValidationErrors from '../../../utils/getValidationErrors'
 
-
 interface ModalProps {
   handleToggleModal(): void
   variation: Variation | undefined
@@ -111,7 +110,7 @@ const Modal: React.FC<ModalProps> = ({ handleToggleModal, variation }) => {
           <Form ref={incomeFormRef} onSubmit={handleIncome} >
             <h2 className='income' >Nova Receita</h2>
 
-            <TextField 
+            <TextField
               name='value'
               variation={variation} 
               mask='currency' 

@@ -13,7 +13,7 @@ export const Container = styled.div`
     span {
       width: 160px;
 
-      background: var(--white-purple);
+      background: var(--light-purple);
       color: var(--white);
       padding: 8px;
       border-radius: 10px;
@@ -37,7 +37,7 @@ export const Container = styled.div`
         content: '';
         position: absolute;
         border-style: solid;
-        border-color: var(--white-purple) transparent;
+        border-color: var(--light-purple) transparent;
         border-width: 6px 6px 0 6px;
         top: 100%;
         left: 50%;

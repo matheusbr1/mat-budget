@@ -19,18 +19,18 @@ const inputVariations: any = {
     color: var(--green);
 ` , 
   default: css`
-    border-color: var(--white-purple);
-    color: var(--white-purple);
+    border-color: var(--light-purple);
+    color: var(--light-purple);
   ` 
 }
 
 const inputErrored = css`
-  border-color: var(--red);
+  border-color: var(--input-error);
   color: var(--input-text);
 `
 
 export const Container = styled.div<InputProps>`
-  width: 75%;
+  width: 100%;
   position: relative;
 
   input {
@@ -84,10 +84,10 @@ export const Error = styled(Tooltip)`
   top: 24px;
 
   .tooltip-content > span {
-    background: var(--red);
+    background: var(--input-error);
 
     &::before {
-      border-color: var(--red) transparent;
+      border-color: var(--input-error) transparent;
     }
   }
 `

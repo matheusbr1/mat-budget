@@ -79,7 +79,7 @@ const SignIn: React.FC = () => {
 
         </Form>
         
-        <Link to='/signUp' className='signup'>
+        <Link to='/signUp' className='sign-up'>
           Criar conta
           <img src={arrow} alt='Criar conta'/>
         </Link>

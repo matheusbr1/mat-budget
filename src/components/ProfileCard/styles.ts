@@ -51,11 +51,16 @@ export const Container = styled.div`
     }
   }
 
-  img.logout {
-    cursor: pointer;
-    width: 24px;
-    height: 24px;
+
+  button {
+    img.logout {
+      cursor: pointer;
+      width: 26px;
+      height: 26px;
+    }
   }
+
+  
   
   @media (max-width: 500px) {
     width: 150px;

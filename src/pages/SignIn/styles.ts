@@ -9,7 +9,7 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
 
-  background: var(--white-purple);
+  background: var(--light-purple);
   height: 100vh;
 
   img.ilustration {
@@ -49,6 +49,7 @@ export const MainCard = styled.main`
   justify-content: center;
 
   margin: 10px;
+  padding: 0 45px;
 
   height: 500px;
   width: 380px;
@@ -88,12 +89,12 @@ export const MainCard = styled.main`
     }
   }
 
-  a.signup {
+  a.sign-up {
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    width: 90px;
+    width: 85px;
 
     position: absolute;
     bottom: 50px;

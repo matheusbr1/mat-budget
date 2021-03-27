@@ -20,7 +20,7 @@ const DoughnutChart: React.FC<ChartProps> = ({ label }) => {
     {
       id: 1,
       label: "Educação",
-      color: 'var(--white-purple)',
+      color: 'var(--light-purple)',
       value: '300,00',
       percent: 50
     },

@@ -7,7 +7,7 @@ interface ContainerProps {
 
 const buttonVariations = {
   default: css`
-    background: var(--white-purple);
+    background: var(--light-purple);
     color: var(--white);
 
     &:hover {
@@ -39,7 +39,7 @@ export const Container = styled.button<ContainerProps>`
   
   ${(props) => buttonVariations[props.variation || 'default']}
 
-  width: 75%;
+  width: 100%;
   height: 50px;
 
   border-radius: 20px;
