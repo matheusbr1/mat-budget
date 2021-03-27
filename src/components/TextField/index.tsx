@@ -1,9 +1,13 @@
 import React, { useEffect, useCallback, useRef, useState } from 'react'
 import { useField } from '@unform/core'
 
-import { Container } from './styles'
+import { FiAlertCircle } from 'react-icons/fi'
+
+import { Container, Error } from './styles'
 
 import { currency } from '../../utils/masks'
+
+
 
 interface TextFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
   variation?: 'expense' | 'income'
@@ -59,6 +63,7 @@ const TextField: React.FC<TextFieldProps> = (
 
   return (
     <Container 
+      isErrored={!!error}
       isFocused={isFocused} 
       isFilled={isFilled && !!colorOnFill} 
       variation={variation || 'default'}
@@ -70,8 +75,12 @@ const TextField: React.FC<TextFieldProps> = (
         onKeyUp={handleKeyUp}
         {...rest} 
       />
-
-      {error}
+      
+        {error && (
+          <Error title={error}>
+            <FiAlertCircle color='var(--red)' size={25} />
+          </Error>
+        )}
 
     </Container>
   )

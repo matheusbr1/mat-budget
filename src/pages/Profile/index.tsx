@@ -15,7 +15,7 @@ import manWalking from '../../assets/images/ilustration.png'
 
 import { Container, MainCard, Header, AvatarInput } from './styles'
 import { useToast } from '../../hooks/toast'
-import getValidationErrors from '../../utils/validationFormErrors'
+import getValidationErrors from '../../utils/getValidationErrors'
 
 const Profile: React.FC = () => {
 
@@ -29,8 +29,8 @@ const Profile: React.FC = () => {
 
     console.log(fields)
 
-
     try {
+      formRef.current?.setErrors({})
 
       const schema = yup.object().shape({
         name: yup.string(),

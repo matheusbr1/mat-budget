@@ -12,7 +12,7 @@ import arrow from '../../assets/icons/arrow.svg'
 import manWalking from '../../assets/images/ilustration.png'
 
 import { Container, MainCard } from './styles'
-import getValidationErrors from '../../utils/validationFormErrors'
+import getValidationErrors from '../../utils/getValidationErrors'
 
 const SignIn: React.FC = () => {
 
@@ -23,6 +23,8 @@ const SignIn: React.FC = () => {
   const handleSignIn = useCallback(async (fields) => {
 
     try {
+      formRef.current?.setErrors({})
+
       const schema = yup.object().shape({
         email: yup.string()
           .email('E-mail inválido')

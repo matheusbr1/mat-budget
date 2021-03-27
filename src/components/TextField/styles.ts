@@ -1,8 +1,11 @@
 import styled, { css } from 'styled-components'
 
+import Tooltip from '../Tooltip'
+
 interface InputProps {
   isFocused: boolean
   isFilled: boolean
+  isErrored: boolean
   variation:  'expense' | 'income' | 'default'
 }
 
@@ -21,14 +24,21 @@ const inputVariations: any = {
   ` 
 }
 
+const inputErrored = css`
+  border-color: var(--red);
+  color: var(--input-text);
+`
+
 export const Container = styled.div<InputProps>`
   width: 75%;
+  position: relative;
 
   input {
     width: 100%;
     height: 50px;
     
-    padding: 12px 20px;
+    padding: 12px 50px 12px 20px;
+
     margin: 10px 0;
 
     font-size: 1.6rem;
@@ -39,16 +49,45 @@ export const Container = styled.div<InputProps>`
 
     color: var(--input-text);
 
-    ${props => (props.isFilled || props.isFocused) &&
+    ${props => (props.isFilled) &&
+      inputVariations[props.variation]
+    }
+
+    ${props => props.isErrored 
+      && inputErrored
+    }
+
+    ${props => (props.isFocused) &&
       inputVariations[props.variation]
     }
 
     &::placeholder {
-      ${props => props.isFocused && inputVariations[props.variation]}
+      ${props => props.isFocused && !props.isErrored && 
+        inputVariations[props.variation]
+      }
     }
 
     &:hover {
-      ${props => inputVariations[props.variation]}
+      ${props => !props.isErrored 
+        && inputVariations[props.variation]
+      }
+    }
+  }
+`
+
+export const Error = styled(Tooltip)`
+  height: 25px;
+  z-index: 10;
+
+  position: absolute;
+  right: 18px;
+  top: 24px;
+
+  .tooltip-content > span {
+    background: var(--red);
+
+    &::before {
+      border-color: var(--red) transparent;
     }
   }
 `

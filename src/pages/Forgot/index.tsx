@@ -14,7 +14,7 @@ import manWalking from '../../assets/images/ilustration.png'
 
 import { Container, MainCard } from './styles'
 import { useToast } from '../../hooks/toast'
-import getValidationErrors from '../../utils/validationFormErrors'
+import getValidationErrors from '../../utils/getValidationErrors'
 
 const SignUp: React.FC = () => {
 

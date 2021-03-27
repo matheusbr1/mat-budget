@@ -19,7 +19,7 @@ import Select from '../../Select'
 import { categories } from '../../../mocks'
 
 import { useToast } from '../../../hooks/toast'
-import getValidationErrors from '../../../utils/validationFormErrors'
+import getValidationErrors from '../../../utils/getValidationErrors'
 
 
 interface ModalProps {
