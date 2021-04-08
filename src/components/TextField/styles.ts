@@ -61,11 +61,11 @@ export const Container = styled.div<InputProps>`
       inputVariations[props.variation]
     }
 
-    &::placeholder {
+    /* &::placeholder {
       ${props => props.isFocused && !props.isErrored && 
         inputVariations[props.variation]
       }
-    }
+    } */
 
     &:hover {
       ${props => !props.isErrored 

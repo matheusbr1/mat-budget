@@ -102,7 +102,7 @@ export const MainCard = styled.main`
     justify-content: space-between;
     align-items: center;
 
-    width: 125px;
+    width: 135px;
 
     position: absolute;
     bottom: 50px;

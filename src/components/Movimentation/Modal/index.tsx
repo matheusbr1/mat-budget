@@ -114,7 +114,7 @@ const Modal: React.FC<ModalProps> = ({ handleToggleModal, variation }) => {
               name='value'
               variation={variation} 
               mask='currency' 
-              placeholder="R$ 100,00" 
+              placeholder="Digite o valor da receita" 
             />
 
             <Select 
@@ -147,7 +147,7 @@ const Modal: React.FC<ModalProps> = ({ handleToggleModal, variation }) => {
               name='value'
               variation={variation} 
               mask='currency' 
-              placeholder="R$ 100,00" 
+              placeholder="Digite o valor da despesa" 
             />
 
             <Select 

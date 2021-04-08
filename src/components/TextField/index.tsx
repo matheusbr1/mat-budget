@@ -7,8 +7,6 @@ import { Container, Error } from './styles'
 
 import { currency } from '../../utils/masks'
 
-
-
 interface TextFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
   variation?: 'expense' | 'income'
   mask?: 'currency'
