@@ -2,8 +2,8 @@ import styled, { css } from 'styled-components'
 import { animated } from 'react-spring'
 
 interface ContainerProps {
-  type?: 'success' | 'error' | 'info';
-  hasDescription: number;
+  type?: 'success' | 'error' | 'info'
+  hasDescription: boolean
 }
 
 const toastTypeVariations = {
@@ -68,7 +68,7 @@ export const Container = styled(animated.div) <ContainerProps>`
       align-items: center;
 
       svg {
-          margin-top: 0;
+        margin-top: 0;
       }
 
       button {

@@ -38,11 +38,9 @@ const BalanceCard: React.FC = () => {
               <div className="line" key={category.id}>
                 <div>
                   <Dot color={category.color} />
-                  <p>{category.label}</p>
+                  <p> {category.label} </p>
                 </div>
-                <p> 
-                  R$ {category.value}
-                </p>
+                <p>  {category.value} </p>
               </div>
             ))
           }

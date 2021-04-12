@@ -11,8 +11,22 @@ interface ChartProps {
 const DoughnutChart: React.FC<ChartProps> = ({ label }) => {
 
   const data = {
+    labels: [
+      'Educação',
+      'Alimentação',
+      'Lazer',
+      'Outros',
+    ],
     datasets: [{
-      data: [10, 20, 30],
+      label: 'Datasets',
+      data: [300, 258, 125 , 12],
+      backgroundColor: [
+        '#9C69E2',
+        '#FFB800',
+        '#FF4C61',
+        '#33D69F',
+      ],
+      hoverOffset: 4
     }]
   }
 

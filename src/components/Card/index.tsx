@@ -19,8 +19,7 @@ const Card: React.FC<CardProps> = ({ value, label, type, icon }) => {
       </div>
 
       <Infos>
-        <h3>R$ {value}</h3>
-        
+        <h3>{value}</h3>
         <span>{label}</span>
       </Infos>
       

@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
-import { transactions as list } from '../../mocks'
+import React from 'react'
 import Dot from '../Dot'
+import { useTransactions } from '../../hooks/transactions'
 
 import { Container } from './styles'
 
 const TransactionsCard: React.FC = () => {
 
-  const [transactions] = useState(list) 
+  const { transactions } = useTransactions()
 
   return (
     <Container>
@@ -15,20 +15,26 @@ const TransactionsCard: React.FC = () => {
       </div>
 
       <div className="transactions">
-          {
-            transactions.map(transaction => (
-              <div className="line" key={transaction.id} >
-                <div>
-                  <Dot color={transaction.color} />
-                  <p>{transaction.label}</p>
-                </div>
-                <p> 
-                  R$ {transaction.value}
-                </p>
+        {
+          transactions.reverse().map(transaction => (
+            <div className="line" key={transaction.id}>
+              <div>
+                
+                <Dot 
+                  color={
+                    transaction.type === 'income' 
+                      ? 'var(--green)' 
+                      : 'var(--red)'
+                  } 
+                />
+                
+                <p>{transaction.description}</p>
               </div>
-            ))
-          }
-        </div>
+              <p> {transaction.value} </p>
+            </div>
+          ))
+        }
+      </div>
     </Container>
   )
 }

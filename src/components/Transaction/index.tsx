@@ -4,24 +4,24 @@ import { Container } from './styles'
 import plusIcon from '../../assets/icons/plus.svg'
 
 import Modal from './Modal'
-import Options from './Options'
+import Type from './Type'
 
 export type Variation = 'expense' | 'income'
 
-const Movimentation: React.FC<React.ButtonHTMLAttributes<HTMLButtonElement>> = 
+const Transaction: React.FC<React.ButtonHTMLAttributes<HTMLButtonElement>> = 
   ({ ...rest }) => {
 
-  const [isOptionsActive, setIsOptionsActive] = useState(false)
+  const [isActive, setIsActive] = useState(false)
 
   const handleOptions = useCallback(() => {
-    setIsOptionsActive(state => !state)
+    setIsActive(state => !state)
   },[])
 
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   const handleToggleModal = useCallback(() => {
     setIsModalOpen(state => !state)
-    setIsOptionsActive(false)
+    setIsActive(false)
   }, [])
 
   const [variation, setVariation] = useState<Variation | undefined>()
@@ -37,18 +37,18 @@ const Movimentation: React.FC<React.ButtonHTMLAttributes<HTMLButtonElement>> =
         <Modal variation={variation} handleToggleModal={handleToggleModal} />
       )}
 
-      {isOptionsActive && !isModalOpen && (
-        <Options 
+      {isActive && !isModalOpen && (
+        <Type 
          handleVariation={handleVariation} 
-          handleToggleModal={handleToggleModal} 
+         handleToggleModal={handleToggleModal} 
         />
       )}
 
-      <Container onClick={handleOptions} active={isOptionsActive} {...rest}>
-        <img src={plusIcon} alt="Nova movimentação"/>
+      <Container onClick={handleOptions} active={isActive} {...rest}>
+        <img src={plusIcon} alt="Nova transação"/>
       </Container>
     </React.Fragment>
   )
 }
 
-export default Movimentation
+export default Transaction

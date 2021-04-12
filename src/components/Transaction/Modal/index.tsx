@@ -20,6 +20,7 @@ import { categories } from '../../../mocks'
 
 import { useToast } from '../../../hooks/toast'
 import getValidationErrors from '../../../utils/getValidationErrors'
+import { useTransactions } from '../../../hooks/transactions'
 
 interface ModalProps {
   handleToggleModal(): void
@@ -33,6 +34,8 @@ const Modal: React.FC<ModalProps> = ({ handleToggleModal, variation }) => {
 
   const { addToast } = useToast()
 
+  const { createTransaction } = useTransactions()
+
   const handleExpense = useCallback(async (fields) => {
 
     try {
@@ -41,6 +44,8 @@ const Modal: React.FC<ModalProps> = ({ handleToggleModal, variation }) => {
         value: yup.string()
           .max(17 ,'Valor inválido')
           .min(3, 'Valor inválido')
+          .required('Campo obrigatório'),
+        description: yup.string()
           .required('Campo obrigatório')
       })
 
@@ -48,11 +53,16 @@ const Modal: React.FC<ModalProps> = ({ handleToggleModal, variation }) => {
         abortEarly: false
       })
 
+      await createTransaction({
+        ...fields,
+        type: 'expense'
+      })
+
       addToast({
         type:'success',
         title: 'Nova despesa adicionada'
       })
-  
+
       handleToggleModal()
       
     } catch (error) {
@@ -61,7 +71,7 @@ const Modal: React.FC<ModalProps> = ({ handleToggleModal, variation }) => {
         expenseFormRef.current?.setErrors(errors)
       }
     }
-  }, [addToast, handleToggleModal])
+  }, [addToast, handleToggleModal, createTransaction])
 
   const handleIncome = useCallback(async (fields) => {
 
@@ -71,11 +81,18 @@ const Modal: React.FC<ModalProps> = ({ handleToggleModal, variation }) => {
         value: yup.string()
           .max(17 ,'Valor inválido')
           .min(3, 'Valor inválido')
+          .required('Campo obrigatório'),
+        description: yup.string()
           .required('Campo obrigatório')
       })
 
       await schema.validate(fields, {
         abortEarly: false
+      })
+
+      await createTransaction({
+        ...fields,
+        type: 'income'
       })
 
       addToast({
@@ -91,9 +108,9 @@ const Modal: React.FC<ModalProps> = ({ handleToggleModal, variation }) => {
         incomeFormRef.current?.setErrors(errors)
       }
     }
-  }, [addToast, handleToggleModal])
+  }, [addToast, handleToggleModal, createTransaction])
 
-  const [category, setCategory] = useState('Selecione')
+  const [category, setCategory] = useState('Categoria')
 
   const handleCategory = useCallback(e => {
     setCategory(e.target.value)
@@ -114,7 +131,13 @@ const Modal: React.FC<ModalProps> = ({ handleToggleModal, variation }) => {
               name='value'
               variation={variation} 
               mask='currency' 
-              placeholder="Digite o valor da receita" 
+              placeholder="Valor da receita" 
+            />
+
+            <TextField
+              name='description'
+              variation={variation} 
+              placeholder="Descrição" 
             />
 
             <Select 
@@ -147,7 +170,13 @@ const Modal: React.FC<ModalProps> = ({ handleToggleModal, variation }) => {
               name='value'
               variation={variation} 
               mask='currency' 
-              placeholder="Digite o valor da despesa" 
+              placeholder="Valor da despesa" 
+            />
+
+            <TextField
+              name='description'
+              variation={variation} 
+              placeholder="Descrição" 
             />
 
             <Select 

@@ -3,12 +3,12 @@ import { Variation } from '../index'
 
 import { Container, Overlay } from './styles'
 
-interface OptionsProps {
+interface TypeProps {
   handleVariation(variation: Variation): void
   handleToggleModal(): void
 }
 
-const Options: React.FC<OptionsProps> = ({ handleVariation, handleToggleModal }) => {
+const Type: React.FC<TypeProps> = ({ handleVariation, handleToggleModal }) => {
 
   const handleClick = useCallback((variation: Variation) => {
     handleVariation(variation)
@@ -21,6 +21,7 @@ const Options: React.FC<OptionsProps> = ({ handleVariation, handleToggleModal })
   return (
     <Overlay>
       <Container>
+        
           <button 
             type='button' 
             className='income' 
@@ -41,4 +42,4 @@ const Options: React.FC<OptionsProps> = ({ handleVariation, handleToggleModal })
   )
 }
 
-export default Options
+export default Type

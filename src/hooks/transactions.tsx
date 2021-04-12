@@ -1,21 +1,52 @@
-import { createContext, useCallback, useContext, useState } from 'react'
+import { createContext, useCallback, useContext, useEffect, useState } from 'react'
+import { api } from '../services/api'
 
-const TransactionsContext = createContext({})
+export interface Transaction {
+  id: number
+  description: string
+  value: string
+  category: string
+  type: 'income' | 'expense'
+  createdAt: string
+}
+
+type TransactionInput = Omit<Transaction, 'id' | 'createdAt'>
+
+interface TransactionContext {
+  transactions: Transaction[]
+  createTransaction(transaction: TransactionInput): Promise<void>
+}
+
+const TransactionsContext = createContext({} as TransactionContext)
 
 const TransactionsProvider: React.FC = ({ children }) => {
 
-  const [currentBalance, setcurrentBalance] = useState(0)
+  const [transactions, setTransactions] = useState<Transaction[]>([])
+  
+  useEffect(() => {
+    api.get('/transactions')
+      .then(response => setTransactions(response.data.transactions))
+  },[])
 
-  const handleNewExpense = useCallback((value) => {
-    setcurrentBalance(balance => balance - value)
-  }, [])
+  const createTransaction = useCallback(async (transaction) => {
+    const newTransaction = {
+      ...transaction,
+      createdAt: new Date()
+    }
 
-  const handleNewIncome = useCallback((value) => {
-    setcurrentBalance(balance => balance + value)
-  }, [])
+    await api.post('/transactions', newTransaction)
+
+    setTransactions(state => ([
+      ...state,
+      newTransaction
+    ]))
+  },[])
 
   return (
-    <TransactionsContext.Provider value={{ currentBalance }} >
+    <TransactionsContext.Provider value={{ 
+      transactions,
+      createTransaction
+    }}>
       {children}
     </TransactionsContext.Provider>
   )
