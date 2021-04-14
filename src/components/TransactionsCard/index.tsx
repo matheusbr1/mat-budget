@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import Dot from '../Dot'
 import { useTransactions } from '../../hooks/transactions'
 
@@ -8,6 +8,8 @@ const TransactionsCard: React.FC = () => {
 
   const { transactions } = useTransactions()
 
+  const lastTransactions = useMemo(() => transactions.reverse(), [transactions])
+
   return (
     <Container>
       <div className='title'>
@@ -16,7 +18,7 @@ const TransactionsCard: React.FC = () => {
 
       <div className="transactions">
         {
-          transactions.reverse().map(transaction => (
+          lastTransactions.map(transaction => (
             <div className="line" key={transaction.id}>
               <div>
                 

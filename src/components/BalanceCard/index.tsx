@@ -1,28 +1,34 @@
 import React from 'react'
+import { useTransactions } from '../../hooks/transactions'
+import { numberToCurrency } from '../../utils/formatters'
 import Dot from '../Dot'
 
 import { Container } from './styles'
 
 const BalanceCard: React.FC = () => {
+  
+  const { selectedMonthSummary } = useTransactions()
+
+  const { incomes, expenses, balance } = selectedMonthSummary
 
   const categorys = [
     {
       id: 1,
       label: 'Receitas',
       color: 'var(--purple)',
-      value: '10.501,75,00'
+      value: numberToCurrency(incomes)
     },
     {
       id: 2,
       label: 'Despesas',
       color: 'var(--orange)',
-      value: '3.921,35'
+      value: numberToCurrency(expenses)
     },
     {
       id: 3,
       label: 'Balanço',
       color: 'var(--green)',
-      value: '3.580,40'
+      value: numberToCurrency(balance)
     }
   ]
 

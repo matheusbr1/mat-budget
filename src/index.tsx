@@ -58,8 +58,21 @@ createServer({
   routes() {
     this.namespace = 'api'
 
-    this.get('/transactions', () => {
-      return this.schema.all('transaction')
+    this.get('/transactions', (schema, request) => {
+      let { month } = request.queryParams
+
+      if (month) {
+        const transactions = schema.all('transaction')
+          .models
+          .map(item => item.attrs)
+         .filter(transactions => {
+          return new Date(transactions.createdAt as string).getMonth() === Number(month) - 1
+         })
+
+        return { transactions } 
+      } 
+
+      return schema.all('transaction')
     })
 
     this.post('/transactions', (schema, request) => {

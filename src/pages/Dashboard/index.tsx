@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { MenuItem } from '@material-ui/core'
 
 import Card from '../../components/Card'
@@ -19,60 +19,39 @@ import expenseIcon from '../../assets/icons/expense.svg'
 import { Container, TopInfosGrid, CardsGrid, Grid } from './styles'
 
 import { mouths } from '../../mocks'
-import { Transaction, useTransactions } from '../../hooks/transactions';
-import { currencyToNumber, numberToCurrency } from '../../utils/formatters';
+import { useTransactions } from '../../hooks/transactions'
+import { numberToCurrency } from '../../utils/formatters'
+import { api } from '../../services/api'
+
+interface Summary {
+  incomes: number
+  expenses: number
+  balance: number
+}
 
 const Dashboard: React.FC = () => {
   
-  const [month, setMonth] = useState('Janeiro')
+  const { month, setMonth, getSummary } = useTransactions()
 
-  const { transactions } = useTransactions()
+  const [currentMonthSummary, setCurrentMonthSummary] = useState({} as Summary)
 
-  const handleSelect = useCallback((e) => {
-    setMonth(e.target.value)
-  },[])
+  const [lastMonthSummary, setLastMonthSummary] = useState({} as Summary)
 
-  const getSummary = useCallback((transactions: Transaction[]) => {
-    return transactions.reduce((accumulator, transaction) => {
-
-      const value = currencyToNumber(transaction.value) ?? 0
-
-      if (transaction.type === 'income') {
-        accumulator.incomes += value
-        accumulator.balance += value
-      } else {
-        accumulator.expenses += value
-        accumulator.balance -= value
+  useEffect(() => {
+    api.get('/transactions', {
+      params: { 
+        month: new Date().getMonth() + 1
       }
+    }).then(response => setCurrentMonthSummary(getSummary(response.data.transactions)))
+  }, [getSummary])
 
-      return accumulator
-    }, {
-      incomes: 0,
-      expenses: 0,
-      balance: 0
-    })
-  }, [])
-
-  const currentMonthSummary = useMemo(() => {
-    const currentMonth = new Date().getMonth()
-
-    const currentMonthTransactions = transactions.filter(
-      transaction => new Date(transaction.createdAt).getMonth() === currentMonth
-    )
-
-    return getSummary(currentMonthTransactions)
-  }, [transactions, getSummary]) 
-
-  
-  const lastMonthSummary = useMemo(() => {
-    const lastMonth = new Date().getMonth() - 1
-
-    const lastMonthTransactions = transactions.filter(
-      transaction => new Date(transaction.createdAt).getMonth() === lastMonth
-    )
-
-    return getSummary(lastMonthTransactions)
-  }, [transactions, getSummary]) 
+  useEffect(() => {
+    api.get('/transactions', {
+      params: { 
+        month: new Date().getMonth()
+      }
+    }).then(response => setLastMonthSummary(getSummary(response.data.transactions)))
+  }, [getSummary])
   
   return (
     <Container>
@@ -88,12 +67,16 @@ const Dashboard: React.FC = () => {
 
         <Select 
           value={month} 
-          onChange={handleSelect} 
+          onChange={e => setMonth(e.target.value)} 
           style={{ width: '95%', padding: 4 }}
           >
           {mouths.map(month => (
-            <MenuItem value={month} key={month} style={{ fontSize: '1.6rem' }}>
-              { month }
+            <MenuItem 
+              value={month.value} 
+              key={month.value} 
+              style={{ fontSize: '1.6rem' }}
+            >
+              { month.label }
             </MenuItem>
           ))}
         </Select>
