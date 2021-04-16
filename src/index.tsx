@@ -17,18 +17,26 @@ createServer({
           value: 'R$ 10.000,00', 
           category: 'Empresa', 
           type: 'income' ,
-          createdAt: new Date('2021-04-21, 11:00:00')
+          createdAt: new Date('2021-01-21, 11:00:00')
         },
         { 
           id: 2, 
-          description: 'Aluguél', 
-          value: 'R$ 2.000,00', 
-          category: 'Casa', 
-          type: 'expense',
-          createdAt: new Date('2021-04-25, 19:00:00')
+          description: 'Salário', 
+          value: 'R$ 10.000,00', 
+          category: 'Empresa', 
+          type: 'income' ,
+          createdAt: new Date('2021-02-21, 11:00:00')
         },
         { 
           id: 3, 
+          description: 'Compras mercado', 
+          value: 'R$ 1.000,00',
+          category: 'Alimentação', 
+          type: 'expense' ,
+          createdAt: new Date('2021-02-21, 11:00:00')
+        },
+        { 
+          id: 4, 
           description: 'Salário', 
           value: 'R$ 10.000,00', 
           category: 'Empresa', 
@@ -36,20 +44,44 @@ createServer({
           createdAt: new Date('2021-03-21, 11:00:00')
         },
         { 
-          id: 4, 
+          id: 5, 
+          description: 'Salário', 
+          value: 'R$ 10.000,00', 
+          category: 'Empresa', 
+          type: 'income' ,
+          createdAt: new Date('2021-04-21, 11:00:00')
+        },
+        { 
+          id: 6, 
           description: 'Aluguél', 
-          value: 'R$ 2.000,00', 
+          value: 'R$ 1.300,00', 
           category: 'Casa', 
           type: 'expense',
           createdAt: new Date('2021-03-25, 19:00:00')
         },
         { 
-          id: 5, 
-          description: 'IPVA', 
-          value: 'R$ 1.200,00', 
+          id: 7, 
+          description: 'Salário', 
+          value: 'R$ 10.000,00', 
+          category: 'Empresa', 
+          type: 'income' ,
+          createdAt: new Date('2021-05-21, 11:00:00')
+        },
+        { 
+          id: 8, 
+          description: 'Aluguél', 
+          value: 'R$ 2.000,00', 
           category: 'Casa', 
           type: 'expense',
-          createdAt: new Date('2021-03-22, 19:00:00')
+          createdAt: new Date('2021-04-25, 19:00:00')
+        },
+        { 
+          id: 9, 
+          description: 'IPVA', 
+          value: 'R$ 1.200,00', 
+          category: 'Carro', 
+          type: 'expense',
+          createdAt: new Date('2021-04-22, 19:00:00')
         }
       ]
     })

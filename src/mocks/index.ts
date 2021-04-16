@@ -17,7 +17,7 @@ export const categories = {
   ]
 }
 
-export const mouths = [
+export const months = [
   { value: 1, label: 'Janeiro' }, 
   { value: 2, label: 'Fevereiro' }, 
   { value: 3, label: 'Março' }, 

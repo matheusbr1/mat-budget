@@ -18,7 +18,7 @@ import expenseIcon from '../../assets/icons/expense.svg'
 
 import { Container, TopInfosGrid, CardsGrid, Grid } from './styles'
 
-import { mouths } from '../../mocks'
+import { months } from '../../mocks'
 import { useTransactions } from '../../hooks/transactions'
 import { numberToCurrency } from '../../utils/formatters'
 import { api } from '../../services/api'
@@ -70,7 +70,7 @@ const Dashboard: React.FC = () => {
           onChange={e => setMonth(e.target.value)} 
           style={{ width: '95%', padding: 4 }}
           >
-          {mouths.map(month => (
+          {months.map(month => (
             <MenuItem 
               value={month.value} 
               key={month.value} 
