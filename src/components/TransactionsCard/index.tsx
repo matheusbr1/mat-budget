@@ -18,8 +18,8 @@ const TransactionsCard: React.FC = () => {
 
       <div className="transactions">
         {
-          lastTransactions.map(transaction => (
-            <div className="line" key={transaction.id}>
+          lastTransactions.map((transaction, index) => (
+            <div className="line" key={index}>
               <div>
                 
                 <Dot 

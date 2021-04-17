@@ -61,14 +61,6 @@ createServer({
         },
         { 
           id: 7, 
-          description: 'Salário', 
-          value: 'R$ 10.000,00', 
-          category: 'Empresa', 
-          type: 'income' ,
-          createdAt: new Date('2021-05-21, 11:00:00')
-        },
-        { 
-          id: 8, 
           description: 'Aluguél', 
           value: 'R$ 2.000,00', 
           category: 'Casa', 
@@ -76,7 +68,7 @@ createServer({
           createdAt: new Date('2021-04-25, 19:00:00')
         },
         { 
-          id: 9, 
+          id: 8, 
           description: 'IPVA', 
           value: 'R$ 1.200,00', 
           category: 'Carro', 

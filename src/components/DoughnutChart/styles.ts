@@ -28,6 +28,10 @@ export const Container = styled.div`
     }
   }
 
+  canvas {
+    margin-top: 25px;
+  }
+
   div.categoryInfos {
     display: flex;
     flex-direction: column;
@@ -67,4 +71,13 @@ export const Container = styled.div`
       }
     }
   }
+`
+
+export const WidhoutData = styled.div`
+  height: 200px;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `

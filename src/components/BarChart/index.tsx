@@ -49,7 +49,9 @@ const BarChart: React.FC = () => {
 
     setBalanceByMonth(balances)
 
-    console.log( balances )
+    // console.log( transactionsByMonth )
+
+    // console.log( balances )
     
   }, [transactions, getSummary])
 
@@ -67,10 +69,17 @@ const BarChart: React.FC = () => {
 
   return (
     <Container>
+       <div className="title" >
+          <h2>Balanço por mês</h2>
+        </div>  
+
        <Bar
-          data={data}
           width={100}
           height={50}
+          data={data}
+          legend={{
+            display: false
+          }}
         />
     </Container>
   )

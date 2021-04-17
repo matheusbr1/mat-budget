@@ -11,7 +11,7 @@ export const Container = styled.div`
   div.doughnutChartsContainer {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    /* align-items: center; */
     width: 100%;
     max-width: 95vw;
     grid-area: doughnutChart;
@@ -92,17 +92,17 @@ export const Grid = styled.div`
   grid-template-columns: repeat(3, 33%);
   
   grid-template-areas: 
-      "barChart barChart balanceCard" 
-      "barChart barChart transactionsCard"
-      "doughnutChart doughnutChart transactionsCard";
+    "barChart barChart balanceCard" 
+    "barChart barChart transactionsCard"
+    "doughnutChart doughnutChart transactionsCard";
 
   @media (max-width: 1024px) {
     grid-template-columns: 1fr;
     
     grid-template-areas: 
-        "balanceCard"
-        "barChart" 
-        "doughnutChart"
-        "transactionsCard";
+      "balanceCard"
+      "barChart" 
+      "doughnutChart"
+      "transactionsCard";
   }
 `

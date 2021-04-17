@@ -19,7 +19,7 @@ import expenseIcon from '../../assets/icons/expense.svg'
 import { Container, TopInfosGrid, CardsGrid, Grid } from './styles'
 
 import { months } from '../../mocks'
-import { useTransactions } from '../../hooks/transactions'
+import { Transaction, useTransactions } from '../../hooks/transactions'
 import { numberToCurrency } from '../../utils/formatters'
 import { api } from '../../services/api'
 
@@ -31,19 +31,35 @@ interface Summary {
 
 const Dashboard: React.FC = () => {
   
-  const { month, setMonth, getSummary } = useTransactions()
+  const { 
+    month, 
+    setMonth, 
+    getSummary, 
+    transactions, 
+    selectedMonthTransactions
+  } = useTransactions()
 
-  const [currentMonthSummary, setCurrentMonthSummary] = useState({} as Summary)
+  const [currentSummary, setCurrentSummary] = useState({} as Summary)
 
   const [lastMonthSummary, setLastMonthSummary] = useState({} as Summary)
 
+  const [currentMonthIncomes, setCurrentMonthIncomes] = useState<Transaction[]>([])
+
+  const [currentMonthExpenses, setCurrentMonthExpenses] = useState<Transaction[]>([])
+
   useEffect(() => {
-    api.get('/transactions', {
-      params: { 
-        month: new Date().getMonth() + 1
-      }
-    }).then(response => setCurrentMonthSummary(getSummary(response.data.transactions)))
-  }, [getSummary])
+    setCurrentMonthIncomes(
+      selectedMonthTransactions.filter(item => item.type === 'income')
+    )
+    
+    setCurrentMonthExpenses(
+      selectedMonthTransactions.filter(item => item.type === 'expense')
+    )
+  }, [selectedMonthTransactions])
+
+  useEffect(() => {
+    setCurrentSummary(getSummary(transactions))
+  }, [transactions, getSummary])
 
   useEffect(() => {
     api.get('/transactions', {
@@ -70,10 +86,10 @@ const Dashboard: React.FC = () => {
           onChange={e => setMonth(e.target.value)} 
           style={{ width: '95%', padding: 4 }}
           >
-          {months.map(month => (
+          {months.map((month, index) => (
             <MenuItem 
+              key={index} 
               value={month.value} 
-              key={month.value} 
               style={{ fontSize: '1.6rem' }}
             >
               { month.label }
@@ -87,21 +103,21 @@ const Dashboard: React.FC = () => {
       <CardsGrid className="cards" >
         <Card 
           type="balance" 
-          value={numberToCurrency(currentMonthSummary.balance)}
+          value={numberToCurrency(currentSummary.balance)}
           label="Meu Saldo Atual"
           icon={currencyIcon}
         />
         
         <Card 
           type="income"
-          value={numberToCurrency(currentMonthSummary.incomes)}
+          value={numberToCurrency(currentSummary.incomes)}
           label="Minhas Receitas" 
           icon={incomeIcon} 
         />
         
         <Card 
           type="expense" 
-          value={numberToCurrency(currentMonthSummary.expenses)}
+          value={numberToCurrency(currentSummary.expenses)}
           label="Minhas Dispesas" 
           icon={expenseIcon} 
         />
@@ -122,8 +138,15 @@ const Dashboard: React.FC = () => {
         <TransactionsCard />
 
         <div className="doughnutChartsContainer">
-          <DoughnutChart label="Receitas por categoria" />
-          <DoughnutChart label="Despesas por categoria" />
+          <DoughnutChart 
+            label="Receitas por categoria" 
+            transactions={currentMonthIncomes}
+          />
+          
+          <DoughnutChart 
+            label="Despesas por categoria" 
+            transactions={currentMonthExpenses}
+          />
         </div>
         
       </Grid>

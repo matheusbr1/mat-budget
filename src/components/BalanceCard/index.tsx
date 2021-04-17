@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useTransactions } from '../../hooks/transactions'
 import { numberToCurrency } from '../../utils/formatters'
 import Dot from '../Dot'
@@ -32,6 +32,14 @@ const BalanceCard: React.FC = () => {
     }
   ]
 
+  const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    setLoading(true)
+
+    setTimeout(() => setLoading(false), 1000)
+  }, [selectedMonthSummary])
+
   return (
     <Container>
       <div className='title'>
@@ -40,13 +48,13 @@ const BalanceCard: React.FC = () => {
 
       <div className="categorys">
           {
-            categorys.map(category => (
-              <div className="line" key={category.id}>
+            categorys.map((category, index) => (
+              <div className="line" key={index}>
                 <div>
                   <Dot color={category.color} />
                   <p> {category.label} </p>
                 </div>
-                <p>  {category.value} </p>
+                <p>  { loading ? 'Carregando ... ' : category.value} </p>
               </div>
             ))
           }

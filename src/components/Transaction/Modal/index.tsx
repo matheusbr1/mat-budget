@@ -185,8 +185,8 @@ const Modal: React.FC<ModalProps> = ({ handleToggleModal, variation }) => {
               variation={variation}  
               onChange={handleCategory} 
               style={{ height: 50 }}>
-              {categories[variation].map(category => (
-                <MenuItem key={category} value={category} style={{ fontSize: '1.6rem'}}>
+              {categories[variation].map((category, index) => (
+                <MenuItem key={index} value={category} style={{ fontSize: '1.6rem'}}>
                   { category }
                 </MenuItem>
               ))}

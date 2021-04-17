@@ -21,6 +21,7 @@ interface Summary {
 
 interface TransactionContext {
   transactions: Transaction[]
+  selectedMonthTransactions: Transaction[]
   selectedMonthSummary: Summary
 
   createTransaction(transaction: TransactionInput): Promise<void>
@@ -38,6 +39,8 @@ const TransactionsProvider: React.FC = ({ children }) => {
 
   const [month, setMonth] = useState(new Date().getMonth() + 1)
 
+  const [selectedMonthTransactions, setSelectedMonthTransactions] = useState<Transaction[]>([])
+
   const [selectedMonthSummary, setSelectedMonthSummary] = useState({
     incomes: 0,
     expenses: 0,
@@ -53,6 +56,11 @@ const TransactionsProvider: React.FC = ({ children }) => {
     await api.post('/transactions', newTransaction)
 
     setTransactions(state => ([
+      ...state,
+      newTransaction
+    ]))
+
+    setSelectedMonthTransactions(state => ([
       ...state,
       newTransaction
     ]))
@@ -83,12 +91,13 @@ const TransactionsProvider: React.FC = ({ children }) => {
     api.get('/transactions').then(response => {
       setTransactions(response.data.transactions)
     })
-  }, [month])
+  }, [])
 
   useEffect(() => {
     api.get('/transactions', {
       params: { month } 
     }).then(response => {
+      setSelectedMonthTransactions(response.data.transactions)
       setSelectedMonthSummary(getSummary(response.data.transactions))
     })
   }, [month, getSummary])
@@ -96,6 +105,7 @@ const TransactionsProvider: React.FC = ({ children }) => {
   return (
     <TransactionsContext.Provider value={{ 
       transactions,
+      selectedMonthTransactions,
       selectedMonthSummary,
       
       createTransaction,
