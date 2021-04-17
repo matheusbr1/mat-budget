@@ -3,7 +3,7 @@ export function currencyToNumber (currency: string) {
   const parts = exreq.exec(currency)
   
   if(!parts) {
-    return
+    return 0
   }
   
   const number = parseFloat(

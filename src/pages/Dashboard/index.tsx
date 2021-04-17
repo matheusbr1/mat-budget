@@ -19,7 +19,7 @@ import expenseIcon from '../../assets/icons/expense.svg'
 import { Container, TopInfosGrid, CardsGrid, Grid } from './styles'
 
 import { months } from '../../mocks'
-import { Transaction, useTransactions } from '../../hooks/transactions'
+import { useTransactions } from '../../hooks/transactions'
 import { numberToCurrency } from '../../utils/formatters'
 import { api } from '../../services/api'
 
@@ -31,31 +31,11 @@ interface Summary {
 
 const Dashboard: React.FC = () => {
   
-  const { 
-    month, 
-    setMonth, 
-    getSummary, 
-    transactions, 
-    selectedMonthTransactions
-  } = useTransactions()
+  const { month, setMonth, getSummary,  transactions } = useTransactions()
 
   const [currentSummary, setCurrentSummary] = useState({} as Summary)
 
   const [lastMonthSummary, setLastMonthSummary] = useState({} as Summary)
-
-  const [currentMonthIncomes, setCurrentMonthIncomes] = useState<Transaction[]>([])
-
-  const [currentMonthExpenses, setCurrentMonthExpenses] = useState<Transaction[]>([])
-
-  useEffect(() => {
-    setCurrentMonthIncomes(
-      selectedMonthTransactions.filter(item => item.type === 'income')
-    )
-    
-    setCurrentMonthExpenses(
-      selectedMonthTransactions.filter(item => item.type === 'expense')
-    )
-  }, [selectedMonthTransactions])
 
   useEffect(() => {
     setCurrentSummary(getSummary(transactions))
@@ -139,13 +119,13 @@ const Dashboard: React.FC = () => {
 
         <div className="doughnutChartsContainer">
           <DoughnutChart 
+            type="incomes"
             label="Receitas por categoria" 
-            transactions={currentMonthIncomes}
           />
           
           <DoughnutChart 
+            type="expenses" 
             label="Despesas por categoria" 
-            transactions={currentMonthExpenses}
           />
         </div>
         

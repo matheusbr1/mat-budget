@@ -15,7 +15,7 @@ createServer({
           id: 1, 
           description: 'Salário', 
           value: 'R$ 10.000,00', 
-          category: 'Empresa', 
+          category: 'Salário', 
           type: 'income' ,
           createdAt: new Date('2021-01-21, 11:00:00')
         },
@@ -23,7 +23,7 @@ createServer({
           id: 2, 
           description: 'Salário', 
           value: 'R$ 10.000,00', 
-          category: 'Empresa', 
+          category: 'Salário', 
           type: 'income' ,
           createdAt: new Date('2021-02-21, 11:00:00')
         },
@@ -39,7 +39,7 @@ createServer({
           id: 4, 
           description: 'Salário', 
           value: 'R$ 10.000,00', 
-          category: 'Empresa', 
+          category: 'Salário', 
           type: 'income' ,
           createdAt: new Date('2021-03-21, 11:00:00')
         },
@@ -47,7 +47,7 @@ createServer({
           id: 5, 
           description: 'Salário', 
           value: 'R$ 10.000,00', 
-          category: 'Empresa', 
+          category: 'Salário', 
           type: 'income' ,
           createdAt: new Date('2021-04-21, 11:00:00')
         },
@@ -55,7 +55,7 @@ createServer({
           id: 6, 
           description: 'Aluguél', 
           value: 'R$ 1.300,00', 
-          category: 'Casa', 
+          category: 'Moradia', 
           type: 'expense',
           createdAt: new Date('2021-03-25, 19:00:00')
         },
@@ -63,7 +63,7 @@ createServer({
           id: 7, 
           description: 'Aluguél', 
           value: 'R$ 2.000,00', 
-          category: 'Casa', 
+          category: 'Moradia', 
           type: 'expense',
           createdAt: new Date('2021-04-25, 19:00:00')
         },
@@ -71,8 +71,24 @@ createServer({
           id: 8, 
           description: 'IPVA', 
           value: 'R$ 1.200,00', 
-          category: 'Carro', 
+          category: 'Transporte', 
           type: 'expense',
+          createdAt: new Date('2021-04-22, 19:00:00')
+        },
+        { 
+          id: 9, 
+          description: 'Gasolina', 
+          value: 'R$ 150,00', 
+          category: 'Transporte', 
+          type: 'expense',
+          createdAt: new Date('2021-04-22, 19:00:00')
+        },
+        { 
+          id: 10, 
+          description: 'Dividendos ITSA4', 
+          value: 'R$ 50,00', 
+          category: 'Proventos', 
+          type: 'income',
           createdAt: new Date('2021-04-22, 19:00:00')
         }
       ]

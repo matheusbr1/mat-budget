@@ -1,8 +1,9 @@
 export const categories = {
   expense: [
     'Categoria',
-    'Vestuário',
     'Moradia',
+    'Transporte',
+    'Vestuário',
     'Lazer',
     'Educação',
     'Alimentação',
