@@ -78,12 +78,21 @@ const DoughnutChart: React.FC<ChartProps> = ({ label, type }) => {
           value: currencyToNumber(item[0].value)
         }
       }
-    }).map((item, index) => ({
-      label: item.category,
-      color: colors[index],
-      value: item.value,
-      percent: Number((item.value / selectedMonthSummary[type] * 100).toFixed(2))
-    }))
+    }).map((item, index) => {
+
+      console.log('Summary', selectedMonthSummary[type])
+
+      console.log(item.value)
+
+      return {
+        label: item.category,
+        color: colors[index],
+        value: item.value,
+        percent: Number((item.value / selectedMonthSummary[type] * 100).toFixed(2))
+      }
+    }) 
+
+    console.log(categoryValuesMerged)
 
     setCategorys(categoryValuesMerged)
 

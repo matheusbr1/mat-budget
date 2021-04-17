@@ -96,11 +96,12 @@ const TransactionsProvider: React.FC = ({ children }) => {
   useEffect(() => {
     api.get('/transactions', {
       params: { month } 
-    }).then(response => {
-      setSelectedMonthTransactions(response.data.transactions)
-      setSelectedMonthSummary(getSummary(response.data.transactions))
-    })
+    }).then(response => setSelectedMonthTransactions(response.data.transactions))
   }, [month, getSummary])
+
+  useEffect(() => {
+    setSelectedMonthSummary(getSummary(selectedMonthTransactions))
+  }, [selectedMonthTransactions, getSummary])
 
   return (
     <TransactionsContext.Provider value={{ 
